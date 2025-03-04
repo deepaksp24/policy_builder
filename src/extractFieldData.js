@@ -17,7 +17,7 @@ export function extractFieldData(jsonFile) {
 
       return {
         section: key, // Store section name
-        field: field.name,
+        field: field.name ? field.name : policyDescription,
         type: getType(index, allField),
         defaultValue: field.defaultValue,
         knownValueDescriptions: isEnum ? field.knownValueDescriptions : [],
