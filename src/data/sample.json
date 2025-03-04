@@ -1,0 +1,498 @@
+[
+    {
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.DeviceScreenSettings",
+    "policyDescription": "Screen settings.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "DeviceScreenSettings",
+                "field": [
+                    {
+                        "name": "allowUserDisplayChanges",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    },
+                    {
+                        "name": "externalUseNativeResolution",
+                        "number": 2,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    },
+                    {
+                        "name": "externalDisplayWidth",
+                        "number": 3,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_INT64"
+                    },
+                    {
+                        "name": "externalDisplayHeight",
+                        "number": 4,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_INT64"
+                    },
+                    {
+                        "name": "externalDisplayScale",
+                        "number": 5,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "ExternalDisplayScaleEnum"
+                    },
+                    {
+                        "name": "internalDisplayScale",
+                        "number": 6,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "InternalDisplayScaleEnum"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "ExternalDisplayScaleEnum",
+                "value": [
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_NOT_SET",
+                        "number": 1
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_50_PERCENT",
+                        "number": 50
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_55_PERCENT",
+                        "number": 55
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_60_PERCENT",
+                        "number": 60
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_65_PERCENT",
+                        "number": 65
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_70_PERCENT",
+                        "number": 70
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_75_PERCENT",
+                        "number": 75
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_80_PERCENT",
+                        "number": 80
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_85_PERCENT",
+                        "number": 85
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_90_PERCENT",
+                        "number": 90
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_95_PERCENT",
+                        "number": 95
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_100_PERCENT",
+                        "number": 100
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_105_PERCENT",
+                        "number": 105
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_110_PERCENT",
+                        "number": 110
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_115_PERCENT",
+                        "number": 115
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_120_PERCENT",
+                        "number": 120
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_125_PERCENT",
+                        "number": 125
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_130_PERCENT",
+                        "number": 130
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_135_PERCENT",
+                        "number": 135
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_140_PERCENT",
+                        "number": 140
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_145_PERCENT",
+                        "number": 145
+                    },
+                    {
+                        "name": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_150_PERCENT",
+                        "number": 150
+                    }
+                ]
+            },
+            {
+                "name": "InternalDisplayScaleEnum",
+                "value": [
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_NOT_SET",
+                        "number": 1
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_50_PERCENT",
+                        "number": 50
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_55_PERCENT",
+                        "number": 55
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_60_PERCENT",
+                        "number": 60
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_65_PERCENT",
+                        "number": 65
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_70_PERCENT",
+                        "number": 70
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_75_PERCENT",
+                        "number": 75
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_80_PERCENT",
+                        "number": 80
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_85_PERCENT",
+                        "number": 85
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_90_PERCENT",
+                        "number": 90
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_95_PERCENT",
+                        "number": 95
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_100_PERCENT",
+                        "number": 100
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_105_PERCENT",
+                        "number": 105
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_110_PERCENT",
+                        "number": 110
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_115_PERCENT",
+                        "number": 115
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_120_PERCENT",
+                        "number": 120
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_125_PERCENT",
+                        "number": 125
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_130_PERCENT",
+                        "number": 130
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_135_PERCENT",
+                        "number": 135
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_140_PERCENT",
+                        "number": 140
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_145_PERCENT",
+                        "number": 145
+                    },
+                    {
+                        "name": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_150_PERCENT",
+                        "number": 150
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "allowUserDisplayChanges",
+            "description": "Allow user changes. Controls whether the display resolution can be overridden by users.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Allow users to overwrite predefined display settings (recommended)."
+                },
+                {
+                    "value": "false",
+                    "description": "Do not allow user changes for predefined display settings."
+                }
+            ],
+            "defaultValue": true,
+            "name": "Allow user changes.",
+            "fieldDescription": "Controls whether the display resolution can be overridden by users.",
+            "fieldConstraints": {}
+        },
+        {
+            "field": "externalUseNativeResolution",
+            "description": "External resolution. If use custom resolution is selected, the custom resolution will be applied to all external monitors. If the resolution is not supported, it will revert to the built in resolution.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Always use native resolution."
+                },
+                {
+                    "value": "false",
+                    "description": "Use custom resolution."
+                }
+            ],
+            "defaultValue": true,
+            "name": "External resolution.",
+            "fieldDescription": "If use custom resolution is selected, the custom resolution will be applied to all external monitors. If the resolution is not supported, it will revert to the built in resolution.",
+            "fieldConstraints": {}
+        },
+        {
+            "field": "externalDisplayWidth",
+            "description": "External display width (in pixels). Specifies the preferred width (in pixels) of any external monitor connected to a managed Chromebook.",
+            "inputConstraint": "The long field should have value greater than or equal to zero.",
+            "defaultValue": 0,
+            "name": "External display width (in pixels).",
+            "fieldDescription": "Specifies the preferred width (in pixels) of any external monitor connected to a managed Chromebook.",
+            "fieldConstraints": {}
+        },
+        {
+            "field": "externalDisplayHeight",
+            "description": "External display height (in pixels). Specifies the preferred height (in pixels) of any external monitor connected to a managed Chromebook.",
+            "inputConstraint": "The long field should have value greater than or equal to zero.",
+            "defaultValue": 0,
+            "name": "External display height (in pixels).",
+            "fieldDescription": "Specifies the preferred height (in pixels) of any external monitor connected to a managed Chromebook.",
+            "fieldConstraints": {}
+        },
+        {
+            "field": "externalDisplayScale",
+            "description": "External display scale (percentage). Sets a specific display scale for external monitors connected to ChromeOS devices.",
+            "knownValueDescriptions": [
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_NOT_SET",
+                    "description": "Not set."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_50_PERCENT",
+                    "description": "50%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_55_PERCENT",
+                    "description": "55%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_60_PERCENT",
+                    "description": "60%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_65_PERCENT",
+                    "description": "65%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_70_PERCENT",
+                    "description": "70%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_75_PERCENT",
+                    "description": "75%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_80_PERCENT",
+                    "description": "80%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_85_PERCENT",
+                    "description": "85%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_90_PERCENT",
+                    "description": "90%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_95_PERCENT",
+                    "description": "95%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_100_PERCENT",
+                    "description": "100%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_105_PERCENT",
+                    "description": "105%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_110_PERCENT",
+                    "description": "110%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_115_PERCENT",
+                    "description": "115%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_120_PERCENT",
+                    "description": "120%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_125_PERCENT",
+                    "description": "125%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_130_PERCENT",
+                    "description": "130%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_135_PERCENT",
+                    "description": "135%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_140_PERCENT",
+                    "description": "140%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_145_PERCENT",
+                    "description": "145%."
+                },
+                {
+                    "value": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_150_PERCENT",
+                    "description": "150%."
+                }
+            ],
+            "defaultValue": "EXTERNAL_DISPLAY_SCALE_ENUM_EXTERNAL_SCALE_NOT_SET",
+            "name": "External display scale (percentage).",
+            "fieldDescription": "Sets a specific display scale for external monitors connected to ChromeOS devices.",
+            "fieldConstraints": {}
+        },
+        {
+            "field": "internalDisplayScale",
+            "description": "Internal display scale (percentage). Sets a specific internal display scale for ChromeOS devices.",
+            "knownValueDescriptions": [
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_NOT_SET",
+                    "description": "Not set."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_50_PERCENT",
+                    "description": "50%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_55_PERCENT",
+                    "description": "55%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_60_PERCENT",
+                    "description": "60%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_65_PERCENT",
+                    "description": "65%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_70_PERCENT",
+                    "description": "70%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_75_PERCENT",
+                    "description": "75%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_80_PERCENT",
+                    "description": "80%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_85_PERCENT",
+                    "description": "85%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_90_PERCENT",
+                    "description": "90%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_95_PERCENT",
+                    "description": "95%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_100_PERCENT",
+                    "description": "100%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_105_PERCENT",
+                    "description": "105%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_110_PERCENT",
+                    "description": "110%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_115_PERCENT",
+                    "description": "115%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_120_PERCENT",
+                    "description": "120%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_125_PERCENT",
+                    "description": "125%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_130_PERCENT",
+                    "description": "130%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_135_PERCENT",
+                    "description": "135%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_140_PERCENT",
+                    "description": "140%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_145_PERCENT",
+                    "description": "145%."
+                },
+                {
+                    "value": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_150_PERCENT",
+                    "description": "150%."
+                }
+            ],
+            "defaultValue": "INTERNAL_DISPLAY_SCALE_ENUM_INTERNAL_SCALE_NOT_SET",
+            "name": "Internal display scale (percentage).",
+            "fieldDescription": "Sets a specific internal display scale for ChromeOS devices.",
+            "fieldConstraints": {}
+        }
+    ],
+    "schemaName": "chrome.devices.DeviceScreenSettings",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Display settings",
+    "supportedPlatforms": ["CHROME_OS"]
+},{"name":"sample"}
+]
