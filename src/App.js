@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
-import sample from "./data/sample.json";
+import sample from "./data/enroll.json";
 import { extractFieldData } from "./extractFieldData";
 
 function App() {
-  const [storedData, setStoredData] = useState([]);
+  const [storedData, setStoredData] = useState([]); // Store extracted data for all policies
 
   useEffect(() => {
-    const jsonFile = sample[0]; // Get the first JSON object
-    const extractedData = extractFieldData(jsonFile); // ✅ Use the utility function
-    setStoredData(extractedData);
+    const extractedData = sample.map((policy) => extractFieldData(policy)); // Process each policy
+    setStoredData(extractedData); // Store the result in state
   }, []);
 
   return (
     <div>
       <h1>Extracted JSON Data</h1>
-      <pre>{JSON.stringify(storedData, null, 2)}</pre> {/* Display JSON */}
+      <pre>{JSON.stringify(storedData, null, 2)}</pre>
+      
     </div>
   );
 }

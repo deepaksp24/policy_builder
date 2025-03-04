@@ -1,0 +1,388 @@
+[
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.ForcedReenrollment",
+    "policyDescription": "Forced re-enrollment.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "ForcedReenrollment",
+                "field": [
+                    {
+                        "name": "reenrollmentMode",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "ReenrollmentModeEnum"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "ReenrollmentModeEnum",
+                "value": [
+                    {
+                        "name": "REENROLLMENT_MODE_ENUM_AUTO_REENROLLMENT",
+                        "number": 1
+                    },
+                    {
+                        "name": "REENROLLMENT_MODE_ENUM_MANUAL_REENROLLMENT",
+                        "number": 4
+                    },
+                    {
+                        "name": "REENROLLMENT_MODE_ENUM_NO_REENROLLMENT",
+                        "number": 3
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "reenrollmentMode",
+            "description": "Specifies whether devices are required to enroll to this domain after it is wiped/reset.",
+            "knownValueDescriptions": [
+                {
+                    "value": "REENROLLMENT_MODE_ENUM_AUTO_REENROLLMENT",
+                    "description": "Force device to automatically re-enroll after wiping."
+                },
+                {
+                    "value": "REENROLLMENT_MODE_ENUM_MANUAL_REENROLLMENT",
+                    "description": "Force device to re-enroll with user credentials after wiping."
+                },
+                {
+                    "value": "REENROLLMENT_MODE_ENUM_NO_REENROLLMENT",
+                    "description": "Do not force device to re-enroll after wiping."
+                }
+            ],
+            "defaultValue": "REENROLLMENT_MODE_ENUM_AUTO_REENROLLMENT",
+            "fieldDescription": "Specifies whether devices are required to enroll to this domain after it is wiped/reset.",
+            "fieldConstraints": {}
+        }
+    ],
+    "notices": [
+        {
+            "field": "reenrollmentMode",
+            "noticeValue": "REENROLLMENT_MODE_ENUM_AUTO_REENROLLMENT",
+            "noticeMessage": "Note: With this option selected, ChromeOS Flex devices on version 131 or later will force devices to re-enroll with user credentials"
+        },
+        {
+            "field": "reenrollmentMode",
+            "noticeValue": "REENROLLMENT_MODE_ENUM_MANUAL_REENROLLMENT",
+            "noticeMessage": "Note: ChromeOS Flex devices are supported on version 131 or later"
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#reenrollment_mode",
+    "schemaName": "chrome.devices.ForcedReenrollment",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Enrollment and access",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.DeviceUpdateDeviceAttributes",
+    "policyDescription": "Asset identifier input after zero touch enrollment.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "DeviceUpdateDeviceAttributes",
+                "field": [
+                    {
+                        "name": "allowToUpdateDeviceAttributes",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "allowToUpdateDeviceAttributes",
+            "description": "Controls if managed devices enrolled after Zero Touch Enrollment can provide asset identification information after enrolling a device into the domain.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Allow asset ID and location to be entered for devices enrolled via zero touch enrollment."
+                },
+                {
+                    "value": "false",
+                    "description": "Do not allow asset ID and location to be entered for devices enrolled via zero touch enrollment."
+                }
+            ],
+            "defaultValue": false,
+            "fieldDescription": "Controls if managed devices enrolled after Zero Touch Enrollment can provide asset identification information after enrolling a device into the domain.",
+            "fieldConstraints": {}
+        }
+    ],
+    "schemaName": "chrome.devices.DeviceUpdateDeviceAttributes",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Enrollment and access",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.DevicePowerwashAllowed",
+    "policyDescription": "Powerwash.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "DevicePowerwashAllowed",
+                "field": [
+                    {
+                        "name": "devicePowerwashAllowed",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "devicePowerwashAllowed",
+            "description": "Determines whether powerwash can be triggered.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Allow powerwash to be triggered."
+                },
+                {
+                    "value": "false",
+                    "description": "Do not allow powerwash to be triggered."
+                }
+            ],
+            "defaultValue": true,
+            "fieldDescription": "Determines whether powerwash can be triggered.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#device_powerwash_allowed",
+    "schemaName": "chrome.devices.DevicePowerwashAllowed",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Enrollment and access",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.ContentProtection",
+    "policyDescription": "Allow web services to request proof that the device is running an unmodified version of ChromeOS that is policy compliant.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "ContentProtection",
+                "field": [
+                    {
+                        "name": "contentProtectionEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "contentProtectionEnabled",
+            "description": "Selection to allow web services to request proof that the devices is running a compliant version of ChromeOS.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Ensures ChromeOS devices in your organization will verify their identity to content providers."
+                },
+                {
+                    "value": "false",
+                    "description": "Does not ensure ChromeOS devices in your organization will verify their identity to content providers. Some premium content may be unavailable to your users."
+                }
+            ],
+            "defaultValue": true,
+            "fieldDescription": "Selection to allow web services to request proof that the devices is running a compliant version of ChromeOS.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#content_protection_enabled",
+    "schemaName": "chrome.devices.ContentProtection",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Enrollment and access",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.DeviceVerifiedMode",
+    "policyDescription": "Verified mode.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "DeviceVerifiedMode",
+                "field": [
+                    {
+                        "name": "deviceVerifiedModeRequired",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    },
+                    {
+                        "name": "servicesWithFullAccess",
+                        "number": 2,
+                        "label": "LABEL_REPEATED",
+                        "type": "TYPE_STRING"
+                    },
+                    {
+                        "name": "servicesWithLimitedAccess",
+                        "number": 3,
+                        "label": "LABEL_REPEATED",
+                        "type": "TYPE_STRING"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "deviceVerifiedModeRequired",
+            "description": "Controls whether enrolled devices are enforced to be in verified mode.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Require verified mode boot for verified access."
+                },
+                {
+                    "value": "false",
+                    "description": "Skip boot mode check for verified access."
+                }
+            ],
+            "defaultValue": false,
+            "fieldDescription": "Controls whether enrolled devices are enforced to be in verified mode.",
+            "fieldConstraints": {}
+        },
+        {
+            "field": "servicesWithFullAccess",
+            "description": "Services with full access. Service accounts which are allowed to receive device ID.",
+            "name": "Services with full access.",
+            "fieldDescription": "Service accounts which are allowed to receive device ID.",
+            "fieldConstraints": {}
+        },
+        {
+            "field": "servicesWithLimitedAccess",
+            "description": "Services with limited access. Service accounts which can verify devices but do not receive device ID.",
+            "name": "Services with limited access.",
+            "fieldDescription": "Service accounts which can verify devices but do not receive device ID.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#device_verified_mode_required",
+    "schemaName": "chrome.devices.DeviceVerifiedMode",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Enrollment and access",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.DisabledDeviceReturnInstructions",
+    "policyDescription": "Disabled device return instructions.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "DisabledDeviceReturnInstructions",
+                "field": [
+                    {
+                        "name": "deviceDisabledMessage",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_STRING"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "deviceDisabledMessage",
+            "description": "Disabled device return instructions. Custom text to display under the device locked message. We recommend including a return address and contact phone number in your message.",
+            "inputConstraint": "The string field should have maximum length of 512.",
+            "defaultValue": "Please return it.",
+            "name": "Disabled device return instructions.",
+            "fieldDescription": "Custom text to display under the device locked message. We recommend including a return address and contact phone number in your message.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#device_disabled_message",
+    "schemaName": "chrome.devices.DisabledDeviceReturnInstructions",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Enrollment and access",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.DeviceSecondFactorAuthentication",
+    "policyDescription": "Integrated FIDO second factor.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "DeviceSecondFactorAuthentication",
+                "field": [
+                    {
+                        "name": "secondFactorAuthentication",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "SecondFactorAuthenticationModeEnum"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "SecondFactorAuthenticationModeEnum",
+                "value": [
+                    {
+                        "name": "SECOND_FACTOR_AUTHENTICATION_MODE_ENUM_UNSET",
+                        "number": 1
+                    },
+                    {
+                        "name": "SECOND_FACTOR_AUTHENTICATION_MODE_ENUM_DISABLED",
+                        "number": 2
+                    },
+                    {
+                        "name": "SECOND_FACTOR_AUTHENTICATION_MODE_ENUM_U2F",
+                        "number": 3
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "secondFactorAuthentication",
+            "description": "Enable Titan M integrated second factor on compatible devices (FIDO compatible). Specifies whether the internal FIDO (https://fidoalliance.org/) compliant second factor authentication device in supported Chromebooks is enabled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "SECOND_FACTOR_AUTHENTICATION_MODE_ENUM_UNSET",
+                    "description": "Allow the user to decide."
+                },
+                {
+                    "value": "SECOND_FACTOR_AUTHENTICATION_MODE_ENUM_DISABLED",
+                    "description": "Disable integrated second factor."
+                },
+                {
+                    "value": "SECOND_FACTOR_AUTHENTICATION_MODE_ENUM_U2F",
+                    "description": "Enable integrated second factor."
+                }
+            ],
+            "defaultValue": "SECOND_FACTOR_AUTHENTICATION_MODE_ENUM_UNSET",
+            "name": "Enable Titan M integrated second factor on compatible devices (FIDO compatible).",
+            "fieldDescription": "Specifies whether the internal FIDO (https://fidoalliance.org/) compliant second factor authentication device in supported Chromebooks is enabled.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#second_factor_authentication",
+    "schemaName": "chrome.devices.DeviceSecondFactorAuthentication",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Enrollment and access",
+    "supportedPlatforms": ["CHROME_OS"]
+}
+]
