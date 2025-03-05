@@ -1,57 +1,48 @@
-export function extractFieldData(jsonFile) {
-  function getType(fieldName, allFields) {
-    const field = allFields.find((f) => f.name === fieldName);
-    return field ? field.type : "TYPE_UNKNOWN";
+function getType(fieldName, allFields, isEnum) {
+  const field = allFields.find((f) => f.name === fieldName);
+  if (!field) return "TYPE_UNKNOWN";
+
+  // If the field has knownValueDescriptions (isEnum is true), treat it as TYPE_ENUM
+  if (isEnum && (field.type === "TYPE_INT64" || field.type === "TYPE_STRING")) {
+    return "TYPE_ENUM";
   }
 
-  function extractNestedFields(
-    nestedFieldDescriptions,
-    allFields,
-    parentFieldName = ""
-  ) {
-    if (!nestedFieldDescriptions) return [];
+  return field.type;
+}
 
-    return nestedFieldDescriptions.map((nestedField) => {
-      const fullFieldName = parentFieldName
-        ? `${parentFieldName}.${nestedField.field}`
-        : nestedField.field;
-      const isEnum = !!nestedField.knownValueDescriptions;
-
-      return {
-        section: fullFieldName,
-        field: nestedField.field,
-        description: nestedField.description || "No description available",
-        type: getType(nestedField.field, allFields),
-        defaultValue: nestedField.defaultValue,
-        knownValueDescriptions: isEnum
-          ? nestedField.knownValueDescriptions
-          : [],
-        nestedFields: extractNestedFields(
-          nestedField.nestedFieldDescriptions,
-          allFields,
-          fullFieldName
-        ),
-      };
-    });
+function checkFieldDependencies(field, formData) {
+  // If no dependencies, field is always active
+  if (!field.fieldDependencies || field.fieldDependencies.length === 0) {
+    return true;
   }
 
+  // Check if any dependency condition is met
+  return field.fieldDependencies.some((dependency) => {
+    const sourceValue = formData[dependency.sourceField];
+    return sourceValue === dependency.sourceFieldValue;
+  });
+}
+
+export function extractFieldData(jsonFile, formData = {}) {
   if (!jsonFile || !jsonFile.fieldDescriptions) return [];
 
   const policyDescription =
     jsonFile.policyDescription || "No description available";
+
   const allFields = jsonFile.definition.messageType.flatMap(
     (messageType) => messageType.field
   );
 
   const name = jsonFile.name;
+
   const extractedFields = jsonFile.fieldDescriptions.map((fieldDescription) => {
     const isEnum = !!fieldDescription.knownValueDescriptions;
 
-    return {
+    const extractedField = {
       section: fieldDescription.field,
       field: fieldDescription.field,
       description: fieldDescription.description || "No description available",
-      type: getType(fieldDescription.field, allFields),
+      type: getType(fieldDescription.field, allFields, isEnum),
       defaultValue: fieldDescription.defaultValue,
       knownValueDescriptions: isEnum
         ? fieldDescription.knownValueDescriptions
@@ -61,7 +52,13 @@ export function extractFieldData(jsonFile) {
         allFields,
         fieldDescription.field
       ),
+      fieldDependencies: fieldDescription.fieldDependencies || [],
     };
+
+    // Check if the field should be active based on dependencies
+    extractedField.isActive = checkFieldDependencies(extractedField, formData);
+
+    return extractedField;
   });
 
   return {
@@ -69,4 +66,45 @@ export function extractFieldData(jsonFile) {
     policyDescription,
     fieldDescriptions: extractedFields,
   };
+}
+
+function extractNestedFields(
+  nestedFieldDescriptions,
+  allFields,
+  parentFieldName = "",
+  formData = {}
+) {
+  if (!nestedFieldDescriptions) return [];
+
+  return nestedFieldDescriptions.map((nestedField) => {
+    const fullFieldName = parentFieldName
+      ? `${parentFieldName}.${nestedField.field}`
+      : nestedField.field;
+
+    const isEnum = !!nestedField.knownValueDescriptions;
+
+    const extractedNestedField = {
+      section: fullFieldName,
+      field: nestedField.field,
+      description: nestedField.description || "No description available",
+      type: getType(nestedField.field, allFields, isEnum),
+      defaultValue: nestedField.defaultValue,
+      knownValueDescriptions: isEnum ? nestedField.knownValueDescriptions : [],
+      fieldDependencies: nestedField.fieldDependencies || [],
+      nestedFields: extractNestedFields(
+        nestedField.nestedFieldDescriptions,
+        allFields,
+        fullFieldName,
+        formData
+      ),
+    };
+
+    // Check if the nested field should be active based on dependencies
+    extractedNestedField.isActive = checkFieldDependencies(
+      extractedNestedField,
+      formData
+    );
+
+    return extractedNestedField;
+  });
 }
