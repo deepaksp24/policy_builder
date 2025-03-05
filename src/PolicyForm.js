@@ -10,40 +10,54 @@ import {
   Radio,
   InputLabel,
   Box,
+  Switch,
 } from "@mui/material";
 
 const PolicyForm = ({ storedData }) => {
-  // State to manage field values for dependency evaluation
   const [fieldValues, setFieldValues] = useState({});
 
-  // Memoized handler to update field values
   const handleFieldChange = useCallback((fieldName, value) => {
     setFieldValues((prevValues) => {
-      // Create a new object to trigger re-render
       const updatedValues = {
         ...prevValues,
         [fieldName]: value,
       };
+
+      // console.log(`Field Changed: ${fieldName} = ${value}`);
+      // console.log("Current Field Values:", updatedValues);
+
       return updatedValues;
     });
   }, []);
 
-  // Function to evaluate field dependencies
   const evaluateDependencies = useCallback(
     (fieldDependencies, currentFieldValues) => {
       if (!fieldDependencies || fieldDependencies.length === 0) return true;
 
-      return fieldDependencies.some((dependency) => {
+      // console.log("Evaluating Dependencies:", {
+      //   fieldDependencies,
+      //   currentFieldValues,
+      // });
+
+      // Use `every` to ensure all dependencies are met
+      return fieldDependencies.every((dependency) => {
         const fieldValue = currentFieldValues[dependency.sourceField];
-        return fieldValue === dependency.sourceFieldValue;
+        const expectedValue = dependency.sourceFieldValue;
+
+        // console.log("Dependency Check:", {
+        //   sourceField: dependency.sourceField,
+        //   fieldValue,
+        //   expectedValue,
+        //   result: String(fieldValue) === String(expectedValue),
+        // });
+
+        return String(fieldValue) === String(expectedValue);
       });
     },
     []
   );
 
-  // Recursive component to render fields and nested fields
   const FieldRenderer = React.memo(({ field, fieldValues, onFieldChange }) => {
-    // Check if `field` is defined and has the required properties
     if (!field || !field.type) {
       console.error("Invalid field data:", field);
       return null;
@@ -58,18 +72,15 @@ const PolicyForm = ({ storedData }) => {
       nestedFields = [],
     } = field;
 
-    // Move this up before any conditionals to ensure consistent hook calls
     const isActive = useMemo(
       () => evaluateDependencies(fieldDependencies, fieldValues),
       [fieldDependencies, fieldValues]
     );
 
-    // Check if the field is active AFTER useMemo
     if (!isActive) {
-      return null;
+      return null; // Hide the field if dependencies are not met
     }
 
-    // If there are nested fields, render them recursively
     if (nestedFields && nestedFields.length > 0) {
       return (
         <Box>
@@ -87,7 +98,6 @@ const PolicyForm = ({ storedData }) => {
       );
     }
 
-    // Render fields based on their type
     switch (type) {
       case "TYPE_ENUM":
         return (
@@ -107,25 +117,53 @@ const PolicyForm = ({ storedData }) => {
         );
 
       case "TYPE_BOOL":
-        return (
-          <FormControl component="fieldset" style={{ marginBottom: "10px" }}>
-            <FormLabel>{fieldLabel}</FormLabel>
-            <RadioGroup
-              row
-              value={fieldValues[fieldLabel] ?? defaultValue.toString()}
-              onChange={(e) => onFieldChange(fieldLabel, e.target.value)}
-            >
-              {knownValueDescriptions.map((item, index) => (
-                <FormControlLabel
-                  key={index}
-                  value={item.value}
-                  control={<Radio />}
-                  label={item.description}
-                />
-              ))}
-            </RadioGroup>
-          </FormControl>
-        );
+        console.log(knownValueDescriptions[0].description);
+        if (!knownValueDescriptions[0].description) {
+          return (
+            <FormControl component="fieldset" style={{ marginBottom: "10px" }}>
+              <FormLabel>{fieldLabel}</FormLabel>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={
+                      fieldValues[fieldLabel] === "true" ||
+                      fieldValues[fieldLabel] === true
+                    }
+                    onChange={(e) =>
+                      onFieldChange(fieldLabel, e.target.checked.toString())
+                    }
+                    color="primary"
+                  />
+                }
+                label={
+                  knownValueDescriptions.length > 0
+                    ? knownValueDescriptions[0].description
+                    : fieldLabel
+                }
+              />
+            </FormControl>
+          );
+        } else {
+          return (
+            <FormControl component="fieldset" style={{ marginBottom: "10px" }}>
+              <FormLabel>{fieldLabel}</FormLabel>
+              <RadioGroup
+                row
+                value={fieldValues[fieldLabel] ?? defaultValue.toString()}
+                onChange={(e) => onFieldChange(fieldLabel, e.target.value)}
+              >
+                {knownValueDescriptions.map((item, index) => (
+                  <FormControlLabel
+                    key={index}
+                    value={item.value}
+                    control={<Radio />}
+                    label={item.description}
+                  />
+                ))}
+              </RadioGroup>
+            </FormControl>
+          );
+        }
 
       case "TYPE_INT64":
         return (
