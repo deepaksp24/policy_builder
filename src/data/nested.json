@@ -83,5 +83,62 @@
 		"policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
 		"categoryTitle": "Hardware",
 		"supportedPlatforms": ["CHROME_OS", "CHROME_BROWSER"]
+	},{
+		"name": "customers/C022n8w1u/policySchemas/chrome.devices.managedguest.PrivacyScreenEnabled",
+		"policyDescription": "Privacy screen.",
+		"definition": {
+			"messageType": [
+				{
+					"name": "PrivacyScreenEnabled",
+					"field": [
+						{
+							"name": "privacyScreenEnabled",
+							"number": 1,
+							"label": "LABEL_OPTIONAL",
+							"type": "TYPE_ENUM",
+							"typeName": "NullableBoolean"
+						}
+					]
+				}
+			],
+			"enumType": [
+				{
+					"name": "NullableBoolean",
+					"value": [
+						{ "name": "UNSET", "number": 1 },
+						{ "name": "FALSE", "number": 2 },
+						{ "name": "TRUE", "number": 3 }
+					]
+				}
+			]
+		},
+		"fieldDescriptions": [
+			{
+				"field": "privacyScreenEnabled",
+				"description": "This setting is only supported on devices with an electronic privacy screen.",
+				"knownValueDescriptions": [
+					{
+						"value": "UNSET",
+						"description": "Allow the user to decide."
+					},
+					{
+						"value": "TRUE",
+						"description": "Always enable the privacy screen."
+					},
+					{
+						"value": "FALSE",
+						"description": "Always disable the privacy screen."
+					}
+				],
+				"defaultValue": "UNSET",
+				"fieldDescription": "This setting is only supported on devices with an electronic privacy screen.",
+				"fieldConstraints": {}
+			}
+		],
+		"schemaName": "chrome.devices.managedguest.PrivacyScreenEnabled",
+		"validTargetResources": ["ORG_UNIT"],
+		"policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+		"categoryTitle": "Hardware",
+		"supportedPlatforms": ["CHROME_OS"]
 	}
 ]

@@ -9,9 +9,101 @@ import {
   FormControlLabel,
   Radio,
   InputLabel,
+  Box,
 } from "@mui/material";
 
 const PolicyForm = ({ storedData }) => {
+  // Recursive component to render fields and nested fields
+  const FieldRenderer = ({ field }) => {
+    // Check if `field` is defined and has the required properties
+    if (!field || !field.type) {
+      console.error("Invalid field data:", field);
+      return null; // Return null or a fallback UI if the field is invalid
+    }
+
+    const {
+      type,
+      knownValueDescriptions = [],
+      defaultValue,
+      field: fieldLabel,
+      description,
+      nestedFields = [],
+    } = field;
+
+    // If there are nested fields, recursively render them
+    if (nestedFields && nestedFields.length > 0) {
+      return (
+        <Box>
+          <FormLabel>{fieldLabel}</FormLabel>
+          {nestedFields.map((nestedField, index) => (
+            <Box key={index} style={{ marginLeft: "20px", marginTop: "10px" }}>
+              <FieldRenderer field={nestedField} />
+            </Box>
+          ))}
+        </Box>
+      );
+    }
+
+    // Render fields based on their type
+    switch (type) {
+      case "TYPE_ENUM":
+        return (
+          <FormControl fullWidth style={{ marginBottom: "10px" }}>
+            <InputLabel>{fieldLabel}</InputLabel>
+            <Select defaultValue={defaultValue}>
+              {knownValueDescriptions.map((item, index) => (
+                <MenuItem key={index} value={item.value}>
+                  {item.description}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        );
+
+      case "TYPE_BOOL":
+        return (
+          <FormControl component="fieldset" style={{ marginBottom: "10px" }}>
+            <FormLabel>{fieldLabel}</FormLabel>
+            <RadioGroup row defaultValue={defaultValue.toString()}>
+              {knownValueDescriptions.map((item, index) => (
+                <FormControlLabel
+                  key={index}
+                  value={item.value}
+                  control={<Radio />}
+                  label={item.description}
+                />
+              ))}
+            </RadioGroup>
+          </FormControl>
+        );
+
+      case "TYPE_INT64":
+        return (
+          <TextField
+            label={fieldLabel}
+            type="number"
+            fullWidth
+            defaultValue={defaultValue}
+            style={{ marginBottom: "10px" }}
+          />
+        );
+
+      case "TYPE_STRING":
+        return (
+          <TextField
+            label={fieldLabel}
+            type="text"
+            fullWidth
+            defaultValue={defaultValue}
+            style={{ marginBottom: "10px" }}
+          />
+        );
+
+      default:
+        return null;
+    }
+  };
+
   return (
     <div style={{ padding: "20px" }}>
       {storedData.map((policy, policyIndex) => (
@@ -36,73 +128,6 @@ const PolicyForm = ({ storedData }) => {
       ))}
     </div>
   );
-};
-
-const FieldRenderer = ({ field }) => {
-  const {
-    type,
-    knownValueDescriptions = [],
-    defaultValue,
-    field: fieldLabel,
-  } = field;
-
-  switch (type) {
-    case "TYPE_ENUM":
-      return (
-        <FormControl fullWidth style={{ marginBottom: "10px" }}>
-          <InputLabel>{fieldLabel}</InputLabel>
-          <Select defaultValue={defaultValue}>
-            {knownValueDescriptions.map((item, index) => (
-              <MenuItem key={index} value={item.value}>
-                {item.description}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      );
-
-    case "TYPE_BOOL":
-      return (
-        <FormControl component="fieldset" style={{ marginBottom: "10px" }}>
-          <FormLabel>{fieldLabel}</FormLabel>
-          <RadioGroup row defaultValue={defaultValue.toString()}>
-            {knownValueDescriptions.map((item, index) => (
-              <FormControlLabel
-                key={index}
-                value={item.value}
-                control={<Radio />}
-                label={item.description}
-              />
-            ))}
-          </RadioGroup>
-        </FormControl>
-      );
-
-    case "TYPE_INT64":
-      return (
-        <TextField
-          label={fieldLabel}
-          type="number"
-          fullWidth
-          defaultValue={defaultValue}
-          style={{ marginBottom: "10px" }}
-        />
-      );
-
-    case "TYPE_STRING":
-      return (
-        <TextField
-          label={fieldLabel}
-          type="text"
-          fullWidth
-          defaultValue={defaultValue}
-          style={{ marginBottom: "10px" }}
-        />
-      );
-
-    default:
-      return null;
-  }
 };
 
 export default PolicyForm;
