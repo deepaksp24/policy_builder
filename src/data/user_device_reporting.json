@@ -1,0 +1,969 @@
+[{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.EnableGranularDeviceOsReporting",
+    "policyDescription": "Report device OS information.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "EnableGranularDeviceOsReporting",
+                "field": [
+                    {
+                        "name": "reportingOsInfoBehavior",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "ReportingOsInfoBehaviorEnum"
+                    },
+                    {
+                        "name": "reportOsInfoCustomAllowlist",
+                        "number": 2,
+                        "label": "LABEL_REPEATED",
+                        "type": "TYPE_STRING"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "ReportingOsInfoBehaviorEnum",
+                "value": [
+                    {
+                        "name": "REPORTING_OS_INFO_BEHAVIOR_ENUM_REPORTING_DISABLE_ALL",
+                        "number": 1
+                    },
+                    {
+                        "name": "REPORTING_OS_INFO_BEHAVIOR_ENUM_REPORTING_ENABLE_ALL",
+                        "number": 2
+                    },
+                    {
+                        "name": "REPORTING_OS_INFO_BEHAVIOR_ENUM_REPORTING_CUSTOM_WITH_ALLOWLIST",
+                        "number": 3
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "reportingOsInfoBehavior",
+            "description": "Controls whether managed device OS information reporting is enabled, disabled, or granularly controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "REPORTING_OS_INFO_BEHAVIOR_ENUM_REPORTING_DISABLE_ALL",
+                    "description": "Disable all OS reporting."
+                },
+                {
+                    "value": "REPORTING_OS_INFO_BEHAVIOR_ENUM_REPORTING_ENABLE_ALL",
+                    "description": "Enable all OS reporting."
+                },
+                {
+                    "value": "REPORTING_OS_INFO_BEHAVIOR_ENUM_REPORTING_CUSTOM_WITH_ALLOWLIST",
+                    "description": "Customize."
+                }
+            ],
+            "defaultValue": "REPORTING_OS_INFO_BEHAVIOR_ENUM_REPORTING_CUSTOM_WITH_ALLOWLIST",
+            "fieldDescription": "Controls whether managed device OS information reporting is enabled, disabled, or granularly controlled.",
+            "fieldConstraints": {}
+        },
+        {
+            "field": "reportOsInfoCustomAllowlist",
+            "description": "Controls which categories of managed ChromeOS device OS information are reported: device OS version information, device OS boot mode, and device OS update status.",
+            "knownValueDescriptions": [
+                {
+                    "value": "report_version_info",
+                    "description": "OS version info."
+                },
+                {
+                    "value": "report_boot_mode",
+                    "description": "OS boot mode."
+                },
+                {
+                    "value": "report_os_update_status",
+                    "description": "OS update status."
+                }
+            ],
+            "fieldDependencies": [
+                {
+                    "sourceField": "reportingOsInfoBehavior",
+                    "sourceFieldValue": "REPORTING_OS_INFO_BEHAVIOR_ENUM_REPORTING_CUSTOM_WITH_ALLOWLIST"
+                }
+            ],
+            "defaultValue": ["report_version_info", "report_boot_mode"],
+            "fieldDescription": "Controls which categories of managed ChromeOS device OS information are reported: device OS version information, device OS boot mode, and device OS update status.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#reporting_os_info_behavior",
+    "schemaName": "chrome.devices.EnableGranularDeviceOsReporting",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "User and device reporting",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.EnableGranularDeviceHardwareReporting",
+    "policyDescription": "Report device hardware information.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "EnableGranularDeviceHardwareReporting",
+                "field": [
+                    {
+                        "name": "reportingHardwareInfoBehavior",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "ReportingHardwareInfoBehaviorEnum"
+                    },
+                    {
+                        "name": "reportHardwareInfoCustomAllowlist",
+                        "number": 2,
+                        "label": "LABEL_REPEATED",
+                        "type": "TYPE_STRING"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "ReportingHardwareInfoBehaviorEnum",
+                "value": [
+                    {
+                        "name": "REPORTING_HARDWARE_INFO_BEHAVIOR_ENUM_REPORTING_DISABLE_ALL",
+                        "number": 1
+                    },
+                    {
+                        "name": "REPORTING_HARDWARE_INFO_BEHAVIOR_ENUM_REPORTING_ENABLE_ALL",
+                        "number": 2
+                    },
+                    {
+                        "name": "REPORTING_HARDWARE_INFO_BEHAVIOR_ENUM_REPORTING_CUSTOM_WITH_ALLOWLIST",
+                        "number": 3
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "reportingHardwareInfoBehavior",
+            "description": "Controls whether managed device hardware information reporting is enabled, disabled, or granularly controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "REPORTING_HARDWARE_INFO_BEHAVIOR_ENUM_REPORTING_DISABLE_ALL",
+                    "description": "Disable all hardware information reporting."
+                },
+                {
+                    "value": "REPORTING_HARDWARE_INFO_BEHAVIOR_ENUM_REPORTING_ENABLE_ALL",
+                    "description": "Enable all hardware information reporting."
+                },
+                {
+                    "value": "REPORTING_HARDWARE_INFO_BEHAVIOR_ENUM_REPORTING_CUSTOM_WITH_ALLOWLIST",
+                    "description": "Customize."
+                }
+            ],
+            "defaultValue": "REPORTING_HARDWARE_INFO_BEHAVIOR_ENUM_REPORTING_DISABLE_ALL",
+            "fieldDescription": "Controls whether managed device hardware information reporting is enabled, disabled, or granularly controlled.",
+            "fieldConstraints": {}
+        },
+        {
+            "field": "reportHardwareInfoCustomAllowlist",
+            "description": "Controls which categories of managed ChromeOS device hardware information are reported: device hardware vital product data information, device system information, and device timezone status.",
+            "knownValueDescriptions": [
+                {
+                    "value": "report_vpd_info",
+                    "description": "Device vital product data info."
+                },
+                {
+                    "value": "report_system_info",
+                    "description": "Device system information."
+                },
+                {
+                    "value": "report_timezone_info",
+                    "description": "Device timezone status."
+                }
+            ],
+            "fieldDependencies": [
+                {
+                    "sourceField": "reportingHardwareInfoBehavior",
+                    "sourceFieldValue": "REPORTING_HARDWARE_INFO_BEHAVIOR_ENUM_REPORTING_CUSTOM_WITH_ALLOWLIST"
+                }
+            ],
+            "defaultValue": null,
+            "fieldDescription": "Controls which categories of managed ChromeOS device hardware information are reported: device hardware vital product data information, device system information, and device timezone status.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#reporting_hardware_info_behavior",
+    "schemaName": "chrome.devices.EnableGranularDeviceHardwareReporting",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "User and device reporting",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.EnableGranularDeviceTelemetryReporting",
+    "policyDescription": "Report device telemetry.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "EnableGranularDeviceTelemetryReporting",
+                "field": [
+                    {
+                        "name": "reportingTelemetryBehavior",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "ReportingTelemetryBehaviorEnum"
+                    },
+                    {
+                        "name": "reportTelemetryCustomAllowlist",
+                        "number": 2,
+                        "label": "LABEL_REPEATED",
+                        "type": "TYPE_STRING"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "ReportingTelemetryBehaviorEnum",
+                "value": [
+                    {
+                        "name": "REPORTING_TELEMETRY_BEHAVIOR_ENUM_REPORTING_DISABLE_ALL",
+                        "number": 1
+                    },
+                    {
+                        "name": "REPORTING_TELEMETRY_BEHAVIOR_ENUM_REPORTING_ENABLE_ALL",
+                        "number": 2
+                    },
+                    {
+                        "name": "REPORTING_TELEMETRY_BEHAVIOR_ENUM_REPORTING_CUSTOM_WITH_ALLOWLIST",
+                        "number": 3
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "reportingTelemetryBehavior",
+            "description": "Controls whether managed device telemetry reporting is enabled, disabled, or granularly controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "REPORTING_TELEMETRY_BEHAVIOR_ENUM_REPORTING_DISABLE_ALL",
+                    "description": "Disable all telemetry reporting."
+                },
+                {
+                    "value": "REPORTING_TELEMETRY_BEHAVIOR_ENUM_REPORTING_ENABLE_ALL",
+                    "description": "Enable all telemetry reporting."
+                },
+                {
+                    "value": "REPORTING_TELEMETRY_BEHAVIOR_ENUM_REPORTING_CUSTOM_WITH_ALLOWLIST",
+                    "description": "Customize."
+                }
+            ],
+            "defaultValue": "REPORTING_TELEMETRY_BEHAVIOR_ENUM_REPORTING_CUSTOM_WITH_ALLOWLIST",
+            "fieldDescription": "Controls whether managed device telemetry reporting is enabled, disabled, or granularly controlled.",
+            "fieldConstraints": {}
+        },
+        {
+            "field": "reportTelemetryCustomAllowlist",
+            "description": "Controls which categories of managed ChromeOS device telemetry information are reported: device hardware status, device network interface, device network configuration, device network status, device activity status, device power status, device storage status, device board status, device CPU status, device graphics status, device audio status, device crash information, device memory status, device backlight status, device bluetooth status, device fan status, device users login/logout events, device CRD sessions, device security status, and device USB peripherals status.",
+            "knownValueDescriptions": [
+                {
+                    "value": "report_hardware_status",
+                    "description": "Hardware status (deprecated)."
+                },
+                {
+                    "value": "report_network_interfaces",
+                    "description": "Network interface (deprecated)."
+                },
+                {
+                    "value": "report_network_configuration",
+                    "description": "Network configuration."
+                },
+                {
+                    "value": "report_network_status",
+                    "description": "Network status."
+                },
+                {
+                    "value": "report_network_events",
+                    "description": "Network events."
+                },
+                {
+                    "value": "report_activity_times",
+                    "description": "Device activity status."
+                },
+                {
+                    "value": "report_power_status",
+                    "description": "Power status."
+                },
+                {
+                    "value": "report_storage_status",
+                    "description": "Storage status."
+                },
+                {
+                    "value": "report_board_status",
+                    "description": "Board status."
+                },
+                {
+                    "value": "report_cpu_info",
+                    "description": "CPU status."
+                },
+                {
+                    "value": "report_graphics_status",
+                    "description": "Graphics status."
+                },
+                {
+                    "value": "report_audio_status",
+                    "description": "Audio status."
+                },
+                {
+                    "value": "report_crash_report_info",
+                    "description": "Crash information."
+                },
+                {
+                    "value": "report_memory_info",
+                    "description": "Memory status."
+                },
+                {
+                    "value": "report_backlight_info",
+                    "description": "Backlight status."
+                },
+                {
+                    "value": "report_bluetooth_info",
+                    "description": "Bluetooth status."
+                },
+                {
+                    "value": "report_fan_info",
+                    "description": "Fan status."
+                },
+                {
+                    "value": "report_login_logout",
+                    "description": "Login/Logout status."
+                },
+                {
+                    "value": "report_crd_sessions",
+                    "description": "CRD sessions."
+                },
+                {
+                    "value": "report_security_status",
+                    "description": "Security status."
+                },
+                {
+                    "value": "report_peripherals",
+                    "description": "USB Peripherals Status."
+                },
+                {
+                    "value": "device_activity_heartbeat_enabled",
+                    "description": "Device activity heartbeat."
+                },
+                {
+                    "value": "report_runtime_counters",
+                    "description": "Device runtime counter."
+                }
+            ],
+            "fieldDependencies": [
+                {
+                    "sourceField": "reportingTelemetryBehavior",
+                    "sourceFieldValue": "REPORTING_TELEMETRY_BEHAVIOR_ENUM_REPORTING_CUSTOM_WITH_ALLOWLIST"
+                }
+            ],
+            "defaultValue": [
+                "report_hardware_status",
+                "report_activity_times",
+                "report_network_interfaces",
+                "report_network_configuration",
+                "report_network_status",
+                "report_storage_status",
+                "report_memory_info",
+                "report_cpu_info",
+                "report_audio_status"
+            ],
+            "fieldDescription": "Controls which categories of managed ChromeOS device telemetry information are reported: device hardware status, device network interface, device network configuration, device network status, device activity status, device power status, device storage status, device board status, device CPU status, device graphics status, device audio status, device crash information, device memory status, device backlight status, device bluetooth status, device fan status, device users login/logout events, device CRD sessions, device security status, and device USB peripherals status.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#reporting_telemetry_behavior",
+    "schemaName": "chrome.devices.EnableGranularDeviceTelemetryReporting",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "User and device reporting",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.EnableReportDeviceUsers",
+    "policyDescription": "Report device user tracking.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "EnableReportDeviceUsers",
+                "field": [
+                    {
+                        "name": "reportDeviceUsers",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "reportDeviceUsers",
+            "description": "Enables reporting for managed devices to track recent device users.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Enable tracking recent users."
+                },
+                {
+                    "value": "false",
+                    "description": "Disable tracking recent users."
+                }
+            ],
+            "defaultValue": true,
+            "fieldDescription": "Enables reporting for managed devices to track recent device users.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#report_device_users",
+    "schemaName": "chrome.devices.EnableReportDeviceUsers",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "User and device reporting",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.EnableReportDeviceKioskSession",
+    "policyDescription": "Report kiosk session status.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "EnableReportDeviceKioskSession",
+                "field": [
+                    {
+                        "name": "reportDeviceSessionStatus",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "reportDeviceSessionStatus",
+            "description": "Enables reporting for kiosk session status.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Enable kiosk session status reporting."
+                },
+                {
+                    "value": "false",
+                    "description": "Disable kiosk session status reporting."
+                }
+            ],
+            "defaultValue": true,
+            "fieldDescription": "Enables reporting for kiosk session status.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#report_device_session_status",
+    "schemaName": "chrome.devices.EnableReportDeviceKioskSession",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "User and device reporting",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.EnableReportDeviceRunningKioskApp",
+    "policyDescription": "Report the running kiosk app.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "EnableReportDeviceRunningKioskApp",
+                "field": [
+                    {
+                        "name": "reportDeviceRunningKioskApp",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "reportDeviceRunningKioskApp",
+            "description": "Enables reporting for managed devices to report the running kiosk app.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Enable the running kiosk app reporting."
+                },
+                {
+                    "value": "false",
+                    "description": "Disable the running kiosk app reporting."
+                }
+            ],
+            "defaultValue": false,
+            "fieldDescription": "Enables reporting for managed devices to report the running kiosk app.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#report_device_running_kiosk_app",
+    "schemaName": "chrome.devices.EnableReportDeviceRunningKioskApp",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "User and device reporting",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.EnableReportDevicePrintJobs",
+    "policyDescription": "Report device print jobs.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "EnableReportDevicePrintJobs",
+                "field": [
+                    {
+                        "name": "reportDevicePrintJobs",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "reportDevicePrintJobs",
+            "description": "Enables reporting for print jobs.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Enable print jobs reporting."
+                },
+                {
+                    "value": "false",
+                    "description": "Disable print jobs reporting."
+                }
+            ],
+            "defaultValue": false,
+            "fieldDescription": "Enables reporting for print jobs.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#report_device_print_jobs",
+    "schemaName": "chrome.devices.EnableReportDevicePrintJobs",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "User and device reporting",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.EnableReportUploadFrequencyV2",
+    "policyDescription": "Device status report upload frequency.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "EnableReportUploadFrequencyV2",
+                "field": [
+                    {
+                        "name": "reportDeviceUploadFrequency",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_MESSAGE",
+                        "typeName": "NullableDuration"
+                    }
+                ]
+            },
+            {
+                "name": "NullableDuration",
+                "field": [
+                    {
+                        "name": "duration",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_INT64"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "reportDeviceUploadFrequency",
+            "description": "Minutes. Controls upload frequency for device status reports.",
+            "inputConstraint": "Duration policy field accepts Long integer as input. Duration policy field value is in the range [60, 25379] (unit in minute).",
+            "nestedFieldDescriptions": [
+                {
+                    "field": "duration",
+                    "description": "Duration.",
+                    "fieldConstraints": {}
+                }
+            ],
+            "defaultValue": 180,
+            "name": "Minutes.",
+            "fieldDescription": "Controls upload frequency for device status reports.",
+            "fieldConstraints": {
+                "numericRangeConstraint": {
+                    "minimum": "60",
+                    "maximum": "25379"
+                }
+            }
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#report_device_upload_frequency",
+    "schemaName": "chrome.devices.EnableReportUploadFrequencyV2",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": {
+        "policyApiLifecycleStage": "API_CURRENT",
+        "scheduledToDeprecatePolicies": [
+            "chrome.devices.EnableReportUploadFrequency"
+        ]
+    },
+    "categoryTitle": "User and device reporting",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.InactiveDeviceNotifications",
+    "policyDescription": "Inactive device notifications.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "InactiveDeviceNotifications",
+                "field": [
+                    {
+                        "name": "notificationEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    },
+                    {
+                        "name": "numDaysConsideredInactive",
+                        "number": 2,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_INT64"
+                    },
+                    {
+                        "name": "cadence",
+                        "number": 3,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_INT64"
+                    },
+                    {
+                        "name": "emailsToNotify",
+                        "number": 4,
+                        "label": "LABEL_REPEATED",
+                        "type": "TYPE_STRING"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "notificationEnabled",
+            "description": "Inactive device notification reports. Enables inactive device notification reports.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Enable inactive device notifications."
+                },
+                {
+                    "value": "false",
+                    "description": "Disable inactive device notifications."
+                }
+            ],
+            "defaultValue": false,
+            "name": "Inactive device notification reports.",
+            "fieldDescription": "Enables inactive device notification reports.",
+            "fieldConstraints": {}
+        },
+        {
+            "field": "numDaysConsideredInactive",
+            "description": "Inactive range (days). Devices that have \"Last Sync\" time beyond this range are considered inactive.",
+            "inputConstraint": "The long field should have value greater than or equal to 1.",
+            "fieldDependencies": [
+                {
+                    "sourceField": "notificationEnabled",
+                    "sourceFieldValue": "true"
+                }
+            ],
+            "defaultValue": 0,
+            "name": "Inactive range (days).",
+            "fieldDescription": "Devices that have \"Last Sync\" time beyond this range are considered inactive.",
+            "fieldConstraints": {
+                "numericRangeConstraint": { "minimum": "1" }
+            }
+        },
+        {
+            "field": "cadence",
+            "description": "Notification cadence (days). Send me an inactive device report with this frequency.",
+            "inputConstraint": "The long field should have value greater than or equal to 1.",
+            "fieldDependencies": [
+                {
+                    "sourceField": "notificationEnabled",
+                    "sourceFieldValue": "true"
+                }
+            ],
+            "defaultValue": 0,
+            "name": "Notification cadence (days).",
+            "fieldDescription": "Send me an inactive device report with this frequency.",
+            "fieldConstraints": {
+                "numericRangeConstraint": { "minimum": "1" }
+            }
+        },
+        {
+            "field": "emailsToNotify",
+            "description": "Email addresses to receive notification reports. Enter a list of email addresses to receive inactive device reports (one address per line). This field requires at least one element.",
+            "fieldDependencies": [
+                {
+                    "sourceField": "notificationEnabled",
+                    "sourceFieldValue": "true"
+                }
+            ],
+            "name": "Email addresses to receive notification reports.",
+            "fieldDescription": "Enter a list of email addresses to receive inactive device reports (one address per line). This field requires at least one element.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#notification_enabled",
+    "schemaName": "chrome.devices.InactiveDeviceNotifications",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "User and device reporting",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.MetricsReporting",
+    "policyDescription": "Metrics reporting.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "MetricsReporting",
+                "field": [
+                    {
+                        "name": "metricsEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "metricsEnabled",
+            "description": "Enables metrics reporting.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Always send metrics to Google."
+                },
+                {
+                    "value": "false",
+                    "description": "Never send metrics to Google."
+                }
+            ],
+            "defaultValue": true,
+            "fieldDescription": "Enables metrics reporting.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#metrics_enabled",
+    "schemaName": "chrome.devices.MetricsReporting",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": {
+        "policyApiLifecycleStage": "API_CURRENT",
+        "scheduledToDeprecatePolicies": [
+            "chrome.devices.AnonymousMetricReporting"
+        ]
+    },
+    "categoryTitle": "User and device reporting",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.LogUploadEnabled",
+    "policyDescription": "Device system log upload.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "LogUploadEnabled",
+                "field": [
+                    {
+                        "name": "logUploadEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "logUploadEnabled",
+            "description": "Devices running a Chrome version older than 86 do not support uploading logs on the device for non-Kiosk sessions. Please upgrade your device to Chrome version 86 or newer to enable log uploads for non-Kiosk sessions.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Enable device system log upload."
+                },
+                {
+                    "value": "false",
+                    "description": "Disable device system log upload."
+                }
+            ],
+            "defaultValue": false,
+            "fieldDescription": "Devices running a Chrome version older than 86 do not support uploading logs on the device for non-Kiosk sessions. Please upgrade your device to Chrome version 86 or newer to enable log uploads for non-Kiosk sessions.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#log_upload_enabled",
+    "schemaName": "chrome.devices.LogUploadEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "User and device reporting",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.DeviceSystemWideTracingEnabled",
+    "policyDescription": "System-wide performance trace collection.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "DeviceSystemWideTracingEnabled",
+                "field": [
+                    {
+                        "name": "deviceSystemWideTracingEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "deviceSystemWideTracingEnabled",
+            "description": "Enables user collection of a system-wide performance trace.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Allow users to collect a system-wide performance trace."
+                },
+                {
+                    "value": "false",
+                    "description": "Prevent users from collecting a system-wide performance trace."
+                }
+            ],
+            "defaultValue": false,
+            "fieldDescription": "Enables user collection of a system-wide performance trace.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#device_system_wide_tracing_enabled",
+    "schemaName": "chrome.devices.DeviceSystemWideTracingEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "User and device reporting",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.DeviceReportXdrEvents",
+    "policyDescription": "Report extended detection and response (XDR) events.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "DeviceReportXdrEvents",
+                "field": [
+                    {
+                        "name": "deviceReportXdrEvents",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "deviceReportXdrEvents",
+            "description": "Enables reporting for extended detection and response (XDR) events.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Report information about extended detection and response (XDR) events."
+                },
+                {
+                    "value": "false",
+                    "description": "Do not report information about extended detection and response (XDR) events."
+                }
+            ],
+            "defaultValue": false,
+            "fieldDescription": "Enables reporting for extended detection and response (XDR) events.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#device_report_xdr_events",
+    "schemaName": "chrome.devices.DeviceReportXdrEvents",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "User and device reporting",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.DeviceExtensionsSystemLogEnabled",
+    "policyDescription": "Extensions system logging.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "DeviceExtensionsSystemLogEnabled",
+                "field": [
+                    {
+                        "name": "deviceExtensionsSystemLogEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "deviceExtensionsSystemLogEnabled",
+            "description": "Enterprise extensions can add logs via the chrome.systemLog API to a system log file. Setting the policy to true will allow the logs to be persisted in the system log file for a limited amount of time. Setting the policy to false or leaving it unset does not allow the logs to be added to the system log file which means that logs will not be persisted between sessions.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Enable enterprise extensions system logging."
+                },
+                {
+                    "value": "false",
+                    "description": "Disable enterprise extensions system logging."
+                }
+            ],
+            "defaultValue": false,
+            "fieldDescription": "Enterprise extensions can add logs via the chrome.systemLog API to a system log file. Setting the policy to true will allow the logs to be persisted in the system log file for a limited amount of time. Setting the policy to false or leaving it unset does not allow the logs to be added to the system log file which means that logs will not be persisted between sessions.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#device_extensions_system_log_enabled",
+    "schemaName": "chrome.devices.DeviceExtensionsSystemLogEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_DEVELOPMENT" },
+    "categoryTitle": "User and device reporting",
+    "supportedPlatforms": ["CHROME_OS"]
+}]

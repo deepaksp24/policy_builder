@@ -1,0 +1,60 @@
+[
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.DevicePostQuantumKeyAgreementEnabled",
+    "policyDescription": "Post-quantum TLS.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "DevicePostQuantumKeyAgreementEnabled",
+                "field": [
+                    {
+                        "name": "devicePostQuantumKeyAgreementEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "NullableBoolean"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "NullableBoolean",
+                "value": [
+                    { "name": "UNSET", "number": 1 },
+                    { "name": "FALSE", "number": 2 },
+                    { "name": "TRUE", "number": 3 }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "devicePostQuantumKeyAgreementEnabled",
+            "description": "This device-level policy configures whether Google ChromeOS will offer a post-quantum key agreement algorithm, in TLS. This allows supporting servers to protect user traffic from being later decrypted by quantum computers. If this policy is Enabled, Google ChromeOS will offer a post-quantum key agreement algorithm in TLS connections. If this policy is Disabled, Google ChromeOS will not offer a post-quantum key agreement algorithm in TLS connections. If this policy is not set, Google ChromeOS will follow the default rollout process for offering post-quantum key agreement algorithms. This policy is a temporary measure and will be removed in future versions of Google ChromeOS. If both this policy and the PostQuantumKeyAgreementEnabled policy are set, this policy will take precedence.",
+            "knownValueDescriptions": [
+                {
+                    "value": "UNSET",
+                    "description": "Use the default Chrome setting."
+                },
+                {
+                    "value": "TRUE",
+                    "description": "Allow post-quantum key agreement in TLS connections."
+                },
+                {
+                    "value": "FALSE",
+                    "description": "Do not allow post-quantum key agreement in TLS connections."
+                }
+            ],
+            "defaultValue": "UNSET",
+            "fieldDescription": "This device-level policy configures whether Google ChromeOS will offer a post-quantum key agreement algorithm, in TLS. This allows supporting servers to protect user traffic from being later decrypted by quantum computers. If this policy is Enabled, Google ChromeOS will offer a post-quantum key agreement algorithm in TLS connections. If this policy is Disabled, Google ChromeOS will not offer a post-quantum key agreement algorithm in TLS connections. If this policy is not set, Google ChromeOS will follow the default rollout process for offering post-quantum key agreement algorithms. This policy is a temporary measure and will be removed in future versions of Google ChromeOS. If both this policy and the PostQuantumKeyAgreementEnabled policy are set, this policy will take precedence.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#device_post_quantum_key_agreement_enabled",
+    "schemaName": "chrome.devices.DevicePostQuantumKeyAgreementEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_DEVELOPMENT" },
+    "categoryTitle": "Security",
+    "supportedPlatforms": ["CHROME_OS"]
+}]
