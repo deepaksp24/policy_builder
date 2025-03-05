@@ -1,0 +1,87 @@
+[
+    {
+		"name": "customers/C022n8w1u/policySchemas/chrome.devices.managedguest.SerialAllowUsbDevicesForUrls",
+		"policyDescription": "Web Serial API allowed devices.",
+		"definition": {
+			"messageType": [
+				{
+					"name": "SerialAllowUsbDevicesForUrls",
+					"field": [
+						{
+							"name": "serialAllowUsbDevicesForUrls",
+							"number": 1,
+							"label": "LABEL_OPTIONAL",
+							"type": "TYPE_MESSAGE",
+							"typeName": "DevicesForUrls"
+						}
+					]
+				},
+				{
+					"name": "DevicesForUrls",
+					"field": [
+						{
+							"name": "webOrigin",
+							"number": 1,
+							"label": "LABEL_REPEATED",
+							"type": "TYPE_MESSAGE",
+							"typeName": "WebOrigin"
+						}
+					]
+				},
+				{
+					"name": "WebOrigin",
+					"field": [
+						{
+							"name": "url",
+							"number": 1,
+							"label": "LABEL_OPTIONAL",
+							"type": "TYPE_STRING"
+						},
+						{
+							"name": "device",
+							"number": 2,
+							"label": "LABEL_REPEATED",
+							"type": "TYPE_STRING"
+						}
+					]
+				}
+			]
+		},
+		"fieldDescriptions": [
+			{
+				"field": "serialAllowUsbDevicesForUrls",
+				"description": "Allows automatically granting permissions to specific sites to connect to serial devices with the given vendor and product IDs.",
+				"nestedFieldDescriptions": [
+					{
+						"field": "webOrigin",
+						"description": "A list of web origins, each with its allowed USB devices.",
+						"nestedFieldDescriptions": [
+							{
+								"field": "url",
+								"description": "Web origin URL. Access to the devices applies to the entire web origin. Any path will be truncated. For detailed information on valid URL patterns, see https://cloud.google.com/docs/chrome-enterprise/policies/url-patterns. Note that using the \"*\" wildcard is not valid. The maximum size is 1000 characters.",
+								"name": "Web origin URL. Access to the devices applies to the entire web origin. Any path will be truncated. For detailed information on valid URL patterns, see https://cloud.google.com/docs/chrome-enterprise/policies/url-patterns. Note that using the \"*\" wildcard is not valid. The maximum size is 1000 characters.",
+								"fieldConstraints": {}
+							},
+							{
+								"field": "device",
+								"description": "A list of USB devices allowed for this web origin. Each device has format 'vendor_id:product_id' where each of the IDs is a hexadecimal 4-char string. An example of a device ID: '1234:ab12'. The maximum size is 500000 characters (for all entries combined).",
+								"name": "A list of USB devices allowed for this web origin. Each device has format 'vendor_id:product_id' where each of the IDs is a hexadecimal 4-char string. An example of a device ID: '1234:ab12'. The maximum size is 500000 characters (for all entries combined).",
+								"fieldConstraints": {}
+							}
+						],
+						"name": "A list of web origins, each with its allowed USB devices.",
+						"fieldConstraints": {}
+					}
+				],
+				"name": "Allows automatically granting permissions to specific sites to connect to serial devices with the given vendor and product IDs.",
+				"fieldConstraints": {}
+			}
+		],
+		"supportUri": "https://support.google.com/chrome/a/answer/2657289?hl=en#serial_allow_usb_devices_for_urls",
+		"schemaName": "chrome.devices.managedguest.SerialAllowUsbDevicesForUrls",
+		"validTargetResources": ["ORG_UNIT"],
+		"policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+		"categoryTitle": "Hardware",
+		"supportedPlatforms": ["CHROME_OS", "CHROME_BROWSER"]
+	}
+]
