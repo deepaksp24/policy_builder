@@ -58,16 +58,18 @@ const PolicyForm = ({ storedData }) => {
       nestedFields = [],
     } = field;
 
-    // Memoized dependency evaluation
+    // Move this up before any conditionals to ensure consistent hook calls
     const isActive = useMemo(
       () => evaluateDependencies(fieldDependencies, fieldValues),
       [fieldDependencies, fieldValues]
     );
 
-    // If the field is not active, return null
-    if (!isActive) return null;
+    // Check if the field is active AFTER useMemo
+    if (!isActive) {
+      return null;
+    }
 
-    // If there are nested fields, recursively render them
+    // If there are nested fields, render them recursively
     if (nestedFields && nestedFields.length > 0) {
       return (
         <Box>
