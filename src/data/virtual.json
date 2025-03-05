@@ -1,0 +1,112 @@
+[{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.VirtualMachinesAllowedUnaffiliatedUser",
+    "policyDescription": "Linux virtual machines for unaffiliated users.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "VirtualMachinesAllowedUnaffiliatedUser",
+                "field": [
+                    {
+                        "name": "virtualMachinesAllowedForUnaffiliatedUser",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_BOOL"
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "virtualMachinesAllowedForUnaffiliatedUser",
+            "description": "Determines whether usage of virtual machines needed to support Linux apps for unaffiliated users is allowed.",
+            "knownValueDescriptions": [
+                {
+                    "value": "true",
+                    "description": "Allow usage for virtual machines needed to support Linux apps for unaffiliated users."
+                },
+                {
+                    "value": "false",
+                    "description": "Block usage for virtual machines needed to support Linux apps for unaffiliated users."
+                }
+            ],
+            "defaultValue": false,
+            "fieldDescription": "Determines whether usage of virtual machines needed to support Linux apps for unaffiliated users is allowed.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#device_unaffiliated_crostini_allowed",
+    "schemaName": "chrome.devices.VirtualMachinesAllowedUnaffiliatedUser",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Virtual machines",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.VirtualMachineAndroidAdbSideloadingAllowed",
+    "policyDescription": "Android apps from untrusted sources.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "VirtualMachineAndroidAdbSideloadingAllowed",
+                "field": [
+                    {
+                        "name": "virtualMachinesAndroidAdbSideloadingAllowed",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "VirtualMachinesAndroidAdbSideloadingAllowedEnum"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "VirtualMachinesAndroidAdbSideloadingAllowedEnum",
+                "value": [
+                    {
+                        "name": "VIRTUAL_MACHINES_ANDROID_ADB_SIDELOADING_ALLOWED_ENUM_DISALLOW",
+                        "number": 1
+                    },
+                    {
+                        "name": "VIRTUAL_MACHINES_ANDROID_ADB_SIDELOADING_ALLOWED_ENUM_DISALLOW_WITH_POWERWASH",
+                        "number": 2
+                    },
+                    {
+                        "name": "VIRTUAL_MACHINES_ANDROID_ADB_SIDELOADING_ALLOWED_ENUM_ALLOW_FOR_AFFILIATED_USERS",
+                        "number": 3
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "virtualMachinesAndroidAdbSideloadingAllowed",
+            "description": "Determines when ADB sideloading is permitted.",
+            "knownValueDescriptions": [
+                {
+                    "value": "VIRTUAL_MACHINES_ANDROID_ADB_SIDELOADING_ALLOWED_ENUM_DISALLOW",
+                    "description": "Prevent users of this device from using ADB sideloading."
+                },
+                {
+                    "value": "VIRTUAL_MACHINES_ANDROID_ADB_SIDELOADING_ALLOWED_ENUM_DISALLOW_WITH_POWERWASH",
+                    "description": "Prevent users of this device from using ADB sideloading and force a device powerwash if sideloading was enabled before."
+                },
+                {
+                    "value": "VIRTUAL_MACHINES_ANDROID_ADB_SIDELOADING_ALLOWED_ENUM_ALLOW_FOR_AFFILIATED_USERS",
+                    "description": "Allow affiliated users of this device to use ADB sideloading."
+                }
+            ],
+            "defaultValue": "VIRTUAL_MACHINES_ANDROID_ADB_SIDELOADING_ALLOWED_ENUM_DISALLOW",
+            "fieldDescription": "Determines when ADB sideloading is permitted.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#device_crostini_arc_adb_sideloading_allowed",
+    "schemaName": "chrome.devices.VirtualMachineAndroidAdbSideloadingAllowed",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Virtual machines",
+    "supportedPlatforms": ["CHROME_OS"]
+}]

@@ -1,0 +1,903 @@
+[{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.LoginScreenSpokenFeedbackEnabled",
+    "policyDescription": "Spoken feedback.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "LoginScreenSpokenFeedbackEnabled",
+                "field": [
+                    {
+                        "name": "loginScreenSpokenFeedbackEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "NullableBoolean"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "NullableBoolean",
+                "value": [
+                    { "name": "UNSET", "number": 1 },
+                    { "name": "FALSE", "number": 2 },
+                    { "name": "TRUE", "number": 3 }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "loginScreenSpokenFeedbackEnabled",
+            "description": "Controls whether the spoken feedback accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "UNSET",
+                    "description": "Allow the user to decide."
+                },
+                {
+                    "value": "TRUE",
+                    "description": "Enable spoken feedback on the sign-in screen."
+                },
+                {
+                    "value": "FALSE",
+                    "description": "Disable spoken feedback on the sign-in screen."
+                }
+            ],
+            "defaultValue": "UNSET",
+            "fieldDescription": "Controls whether the spoken feedback accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#login_screen_spoken_feedback_enabled",
+    "schemaName": "chrome.devices.LoginScreenSpokenFeedbackEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Sign-in screen accessibility",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.LoginScreenSelectToSpeakEnabled",
+    "policyDescription": "Select to speak.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "LoginScreenSelectToSpeakEnabled",
+                "field": [
+                    {
+                        "name": "loginScreenSelectToSpeakEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "NullableBoolean"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "NullableBoolean",
+                "value": [
+                    { "name": "UNSET", "number": 1 },
+                    { "name": "FALSE", "number": 2 },
+                    { "name": "TRUE", "number": 3 }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "loginScreenSelectToSpeakEnabled",
+            "description": "Controls whether the select to speak accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "UNSET",
+                    "description": "Allow the user to decide."
+                },
+                {
+                    "value": "TRUE",
+                    "description": "Enable select to speak on the sign-in screen."
+                },
+                {
+                    "value": "FALSE",
+                    "description": "Disable select to speak on the sign-in screen."
+                }
+            ],
+            "defaultValue": "UNSET",
+            "fieldDescription": "Controls whether the select to speak accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#login_screen_select_to_speak_enabled",
+    "schemaName": "chrome.devices.LoginScreenSelectToSpeakEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Sign-in screen accessibility",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.LoginScreenHighContrastEnabled",
+    "policyDescription": "High contrast.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "LoginScreenHighContrastEnabled",
+                "field": [
+                    {
+                        "name": "loginScreenHighContrastEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "NullableBoolean"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "NullableBoolean",
+                "value": [
+                    { "name": "UNSET", "number": 1 },
+                    { "name": "FALSE", "number": 2 },
+                    { "name": "TRUE", "number": 3 }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "loginScreenHighContrastEnabled",
+            "description": "Controls whether the high contrast accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "UNSET",
+                    "description": "Allow the user to decide."
+                },
+                {
+                    "value": "TRUE",
+                    "description": "Enable high contrast on the sign-in screen."
+                },
+                {
+                    "value": "FALSE",
+                    "description": "Disable high contrast on the sign-in screen."
+                }
+            ],
+            "defaultValue": "UNSET",
+            "fieldDescription": "Controls whether the high contrast accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#login_screen_high_contrast_enabled",
+    "schemaName": "chrome.devices.LoginScreenHighContrastEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Sign-in screen accessibility",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.LoginScreenScreenMagnifierType",
+    "policyDescription": "Screen magnifier.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "LoginScreenScreenMagnifierType",
+                "field": [
+                    {
+                        "name": "loginScreenScreenMagnifierType",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "DeviceLoginScreenScreenMagnifierTypeEnum"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "DeviceLoginScreenScreenMagnifierTypeEnum",
+                "value": [
+                    {
+                        "name": "DEVICE_LOGIN_SCREEN_SCREEN_MAGNIFIER_TYPE_ENUM_UNSET",
+                        "number": 1
+                    },
+                    {
+                        "name": "DEVICE_LOGIN_SCREEN_SCREEN_MAGNIFIER_TYPE_ENUM_DISABLED",
+                        "number": 2
+                    },
+                    {
+                        "name": "DEVICE_LOGIN_SCREEN_SCREEN_MAGNIFIER_TYPE_ENUM_FULL_SCREEN",
+                        "number": 3
+                    },
+                    {
+                        "name": "DEVICE_LOGIN_SCREEN_SCREEN_MAGNIFIER_TYPE_ENUM_DOCKED",
+                        "number": 4
+                    }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "loginScreenScreenMagnifierType",
+            "description": "Controls whether the screen magnifier accessibility feature on the sign-in screen is enabled, disabled, user-controlled, or when docked.",
+            "knownValueDescriptions": [
+                {
+                    "value": "DEVICE_LOGIN_SCREEN_SCREEN_MAGNIFIER_TYPE_ENUM_UNSET",
+                    "description": "Allow the user to decide."
+                },
+                {
+                    "value": "DEVICE_LOGIN_SCREEN_SCREEN_MAGNIFIER_TYPE_ENUM_DISABLED",
+                    "description": "Disable screen magnifier on the sign-in screen."
+                },
+                {
+                    "value": "DEVICE_LOGIN_SCREEN_SCREEN_MAGNIFIER_TYPE_ENUM_FULL_SCREEN",
+                    "description": "Enable full-screen magnifier on the sign-in screen."
+                },
+                {
+                    "value": "DEVICE_LOGIN_SCREEN_SCREEN_MAGNIFIER_TYPE_ENUM_DOCKED",
+                    "description": "Enable docked magnifier on the sign-in screen."
+                }
+            ],
+            "defaultValue": "DEVICE_LOGIN_SCREEN_SCREEN_MAGNIFIER_TYPE_ENUM_UNSET",
+            "fieldDescription": "Controls whether the screen magnifier accessibility feature on the sign-in screen is enabled, disabled, user-controlled, or when docked.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#login_screen_screen_magnifier_type",
+    "schemaName": "chrome.devices.LoginScreenScreenMagnifierType",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Sign-in screen accessibility",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.LoginScreenStickyKeysEnabled",
+    "policyDescription": "Sticky keys.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "LoginScreenStickyKeysEnabled",
+                "field": [
+                    {
+                        "name": "loginScreenStickyKeysEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "NullableBoolean"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "NullableBoolean",
+                "value": [
+                    { "name": "UNSET", "number": 1 },
+                    { "name": "FALSE", "number": 2 },
+                    { "name": "TRUE", "number": 3 }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "loginScreenStickyKeysEnabled",
+            "description": "Login Screen Sticky Keys Enabled. Controls whether the stickey keys accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "UNSET",
+                    "description": "Allow the user to decide."
+                },
+                {
+                    "value": "TRUE",
+                    "description": "Enable sticky keys on the sign-in screen."
+                },
+                {
+                    "value": "FALSE",
+                    "description": "Disable sticky keys on the sign-in screen."
+                }
+            ],
+            "defaultValue": "UNSET",
+            "name": "Login Screen Sticky Keys Enabled.",
+            "fieldDescription": "Controls whether the stickey keys accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#login_screen_sticky_keys_enabled",
+    "schemaName": "chrome.devices.LoginScreenStickyKeysEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Sign-in screen accessibility",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.LoginScreenVirtualKeyboardEnabled",
+    "policyDescription": "On-screen keyboard.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "LoginScreenVirtualKeyboardEnabled",
+                "field": [
+                    {
+                        "name": "loginScreenVirtualKeyboardEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "NullableBoolean"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "NullableBoolean",
+                "value": [
+                    { "name": "UNSET", "number": 1 },
+                    { "name": "FALSE", "number": 2 },
+                    { "name": "TRUE", "number": 3 }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "loginScreenVirtualKeyboardEnabled",
+            "description": "Controls whether the virtual keyboard accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "UNSET",
+                    "description": "Allow the user to decide."
+                },
+                {
+                    "value": "TRUE",
+                    "description": "Enable on-screen keyboard on the sign-in screen."
+                },
+                {
+                    "value": "FALSE",
+                    "description": "Disable on-screen keyboard on the sign-in screen."
+                }
+            ],
+            "defaultValue": "UNSET",
+            "fieldDescription": "Controls whether the virtual keyboard accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#login_screen_virtual_keyboard_enabled",
+    "schemaName": "chrome.devices.LoginScreenVirtualKeyboardEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Sign-in screen accessibility",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.LoginScreenDictationEnabled",
+    "policyDescription": "Dictation.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "LoginScreenDictationEnabled",
+                "field": [
+                    {
+                        "name": "loginScreenDictationEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "NullableBoolean"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "NullableBoolean",
+                "value": [
+                    { "name": "UNSET", "number": 1 },
+                    { "name": "FALSE", "number": 2 },
+                    { "name": "TRUE", "number": 3 }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "loginScreenDictationEnabled",
+            "description": "Controls whether the dictation accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "UNSET",
+                    "description": "Allow the user to decide."
+                },
+                {
+                    "value": "TRUE",
+                    "description": "Enable dictation on the sign-in screen."
+                },
+                {
+                    "value": "FALSE",
+                    "description": "Disable dictation on the sign-in screen."
+                }
+            ],
+            "defaultValue": "UNSET",
+            "fieldDescription": "Controls whether the dictation accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#login_screen_dictation_enabled",
+    "schemaName": "chrome.devices.LoginScreenDictationEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Sign-in screen accessibility",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.LoginScreenKeyboardFocusHighlightEnabled",
+    "policyDescription": "Keyboard focus highlighting.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "LoginScreenKeyboardFocusHighlightEnabled",
+                "field": [
+                    {
+                        "name": "loginScreenKeyboardFocusHighlightEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "NullableBoolean"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "NullableBoolean",
+                "value": [
+                    { "name": "UNSET", "number": 1 },
+                    { "name": "FALSE", "number": 2 },
+                    { "name": "TRUE", "number": 3 }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "loginScreenKeyboardFocusHighlightEnabled",
+            "description": "Controls whether the keyboard focus highlight accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "UNSET",
+                    "description": "Allow the user to decide."
+                },
+                {
+                    "value": "TRUE",
+                    "description": "Enable keyboard focus highlighting on the sign-in screen."
+                },
+                {
+                    "value": "FALSE",
+                    "description": "Disable keyboard focus highlighting on the sign-in screen."
+                }
+            ],
+            "defaultValue": "UNSET",
+            "fieldDescription": "Controls whether the keyboard focus highlight accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#login_screen_keyboard_focus_highlight_enabled",
+    "schemaName": "chrome.devices.LoginScreenKeyboardFocusHighlightEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Sign-in screen accessibility",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.LoginScreenCaretHighlightEnabled",
+    "policyDescription": "Caret highlight.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "LoginScreenCaretHighlightEnabled",
+                "field": [
+                    {
+                        "name": "loginScreenCaretHighlightEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "NullableBoolean"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "NullableBoolean",
+                "value": [
+                    { "name": "UNSET", "number": 1 },
+                    { "name": "FALSE", "number": 2 },
+                    { "name": "TRUE", "number": 3 }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "loginScreenCaretHighlightEnabled",
+            "description": "Controls whether the caret highlight accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "UNSET",
+                    "description": "Allow the user to decide."
+                },
+                {
+                    "value": "TRUE",
+                    "description": "Enable caret highlight on the sign-in screen."
+                },
+                {
+                    "value": "FALSE",
+                    "description": "Disable caret highlight on the sign-in screen."
+                }
+            ],
+            "defaultValue": "UNSET",
+            "fieldDescription": "Controls whether the caret highlight accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#login_screen_caret_highlight_enabled",
+    "schemaName": "chrome.devices.LoginScreenCaretHighlightEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Sign-in screen accessibility",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.LoginScreenAutoclickEnabled",
+    "policyDescription": "Auto-click enabled.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "LoginScreenAutoclickEnabled",
+                "field": [
+                    {
+                        "name": "loginScreenAutoclickEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "NullableBoolean"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "NullableBoolean",
+                "value": [
+                    { "name": "UNSET", "number": 1 },
+                    { "name": "FALSE", "number": 2 },
+                    { "name": "TRUE", "number": 3 }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "loginScreenAutoclickEnabled",
+            "description": "Controls whether the auto-click accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "UNSET",
+                    "description": "Allow the user to decide."
+                },
+                {
+                    "value": "TRUE",
+                    "description": "Enable auto-click on the sign-in screen."
+                },
+                {
+                    "value": "FALSE",
+                    "description": "Disable auto-click on the sign-in screen."
+                }
+            ],
+            "defaultValue": "UNSET",
+            "fieldDescription": "Controls whether the auto-click accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#login_screen_autoclick_enabled",
+    "schemaName": "chrome.devices.LoginScreenAutoclickEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Sign-in screen accessibility",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.LoginScreenLargeCursorEnabled",
+    "policyDescription": "Large cursor.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "LoginScreenLargeCursorEnabled",
+                "field": [
+                    {
+                        "name": "loginScreenLargeCursorEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "NullableBoolean"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "NullableBoolean",
+                "value": [
+                    { "name": "UNSET", "number": 1 },
+                    { "name": "FALSE", "number": 2 },
+                    { "name": "TRUE", "number": 3 }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "loginScreenLargeCursorEnabled",
+            "description": "Controls whether the large cursor accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "UNSET",
+                    "description": "Allow the user to decide."
+                },
+                {
+                    "value": "TRUE",
+                    "description": "Enable large cursor on the sign-in screen."
+                },
+                {
+                    "value": "FALSE",
+                    "description": "Disable large cursor on the sign-in screen."
+                }
+            ],
+            "defaultValue": "UNSET",
+            "fieldDescription": "Controls whether the large cursor accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#login_screen_large_cursor_enabled",
+    "schemaName": "chrome.devices.LoginScreenLargeCursorEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Sign-in screen accessibility",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.LoginScreenCursorHighlightEnabled",
+    "policyDescription": "Cursor highlight.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "LoginScreenCursorHighlightEnabled",
+                "field": [
+                    {
+                        "name": "loginScreenCursorHighlightEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "NullableBoolean"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "NullableBoolean",
+                "value": [
+                    { "name": "UNSET", "number": 1 },
+                    { "name": "FALSE", "number": 2 },
+                    { "name": "TRUE", "number": 3 }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "loginScreenCursorHighlightEnabled",
+            "description": "Controls whether the cursor highlight accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "UNSET",
+                    "description": "Allow the user to decide."
+                },
+                {
+                    "value": "TRUE",
+                    "description": "Enable cursor highlight on the sign-in screen."
+                },
+                {
+                    "value": "FALSE",
+                    "description": "Disable cursor highlight on the sign-in screen."
+                }
+            ],
+            "defaultValue": "UNSET",
+            "fieldDescription": "Controls whether the cursor highlight accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#login_screen_cursor_highlight_enabled",
+    "schemaName": "chrome.devices.LoginScreenCursorHighlightEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Sign-in screen accessibility",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.LoginScreenPrimaryMouseButtonSwitch",
+    "policyDescription": "Primary mouse button.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "LoginScreenPrimaryMouseButtonSwitch",
+                "field": [
+                    {
+                        "name": "loginScreenPrimaryMouseButtonSwitch",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "NullableBoolean"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "NullableBoolean",
+                "value": [
+                    { "name": "UNSET", "number": 1 },
+                    { "name": "FALSE", "number": 2 },
+                    { "name": "TRUE", "number": 3 }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "loginScreenPrimaryMouseButtonSwitch",
+            "description": "Controls whether the primary mouse button accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "UNSET",
+                    "description": "Allow the user to decide."
+                },
+                {
+                    "value": "TRUE",
+                    "description": "Right button is primary on the sign-in screen."
+                },
+                {
+                    "value": "FALSE",
+                    "description": "Left button is primary on the sign-in screen."
+                }
+            ],
+            "defaultValue": "UNSET",
+            "fieldDescription": "Controls whether the primary mouse button accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#login_screen_primary_mouse_button_switch",
+    "schemaName": "chrome.devices.LoginScreenPrimaryMouseButtonSwitch",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Sign-in screen accessibility",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.LoginScreenMonoAudioEnabled",
+    "policyDescription": "Mono audio.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "LoginScreenMonoAudioEnabled",
+                "field": [
+                    {
+                        "name": "loginScreenMonoAudioEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "NullableBoolean"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "NullableBoolean",
+                "value": [
+                    { "name": "UNSET", "number": 1 },
+                    { "name": "FALSE", "number": 2 },
+                    { "name": "TRUE", "number": 3 }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "loginScreenMonoAudioEnabled",
+            "description": "Controls whether the mono audio accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "UNSET",
+                    "description": "Allow the user to decide."
+                },
+                {
+                    "value": "TRUE",
+                    "description": "Enable mono audio on the sign-in screen."
+                },
+                {
+                    "value": "FALSE",
+                    "description": "Disable mono audio on the sign-in screen."
+                }
+            ],
+            "defaultValue": "UNSET",
+            "fieldDescription": "Controls whether the mono audio accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#login_screen_mono_audio_enabled",
+    "schemaName": "chrome.devices.LoginScreenMonoAudioEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Sign-in screen accessibility",
+    "supportedPlatforms": ["CHROME_OS"]
+},
+{
+    "name": "customers/C022n8w1u/policySchemas/chrome.devices.LoginScreenAccessibilityShortcutsEnabled",
+    "policyDescription": "Accessibility shortcuts.",
+    "definition": {
+        "messageType": [
+            {
+                "name": "LoginScreenAccessibilityShortcutsEnabled",
+                "field": [
+                    {
+                        "name": "loginScreenAccessibilityShortcutsEnabled",
+                        "number": 1,
+                        "label": "LABEL_OPTIONAL",
+                        "type": "TYPE_ENUM",
+                        "typeName": "NullableBoolean"
+                    }
+                ]
+            }
+        ],
+        "enumType": [
+            {
+                "name": "NullableBoolean",
+                "value": [
+                    { "name": "UNSET", "number": 1 },
+                    { "name": "FALSE", "number": 2 },
+                    { "name": "TRUE", "number": 3 }
+                ]
+            }
+        ]
+    },
+    "fieldDescriptions": [
+        {
+            "field": "loginScreenAccessibilityShortcutsEnabled",
+            "description": "Controls whether the accessibility shortcuts accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "knownValueDescriptions": [
+                {
+                    "value": "UNSET",
+                    "description": "Allow the user to decide."
+                },
+                {
+                    "value": "TRUE",
+                    "description": "Enable accessibility shortcuts on the sign-in screen."
+                },
+                {
+                    "value": "FALSE",
+                    "description": "Disable accessibility shortcuts on the sign-in screen."
+                }
+            ],
+            "defaultValue": "UNSET",
+            "fieldDescription": "Controls whether the accessibility shortcuts accessibility feature on the sign-in screen is enabled, disabled, or user-controlled.",
+            "fieldConstraints": {}
+        }
+    ],
+    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#login_screen_accessibility_shortcuts_enabled",
+    "schemaName": "chrome.devices.LoginScreenAccessibilityShortcutsEnabled",
+    "validTargetResources": ["ORG_UNIT"],
+    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
+    "categoryTitle": "Sign-in screen accessibility",
+    "supportedPlatforms": ["CHROME_OS"]
+}]
