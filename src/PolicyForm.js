@@ -17,40 +17,19 @@ const PolicyForm = ({ storedData }) => {
   const [fieldValues, setFieldValues] = useState({});
 
   const handleFieldChange = useCallback((fieldName, value) => {
-    setFieldValues((prevValues) => {
-      const updatedValues = {
-        ...prevValues,
-        [fieldName]: value,
-      };
-
-      // console.log(`Field Changed: ${fieldName} = ${value}`);
-      // console.log("Current Field Values:", updatedValues);
-
-      return updatedValues;
-    });
+    setFieldValues((prevValues) => ({
+      ...prevValues,
+      [fieldName]: value,
+    }));
   }, []);
 
   const evaluateDependencies = useCallback(
     (fieldDependencies, currentFieldValues) => {
       if (!fieldDependencies || fieldDependencies.length === 0) return true;
 
-      // console.log("Evaluating Dependencies:", {
-      //   fieldDependencies,
-      //   currentFieldValues,
-      // });
-
-      // Use `every` to ensure all dependencies are met
       return fieldDependencies.every((dependency) => {
         const fieldValue = currentFieldValues[dependency.sourceField];
         const expectedValue = dependency.sourceFieldValue;
-
-        // console.log("Dependency Check:", {
-        //   sourceField: dependency.sourceField,
-        //   fieldValue,
-        //   expectedValue,
-        //   result: String(fieldValue) === String(expectedValue),
-        // });
-
         return String(fieldValue) === String(expectedValue);
       });
     },
@@ -58,11 +37,6 @@ const PolicyForm = ({ storedData }) => {
   );
 
   const FieldRenderer = React.memo(({ field, fieldValues, onFieldChange }) => {
-    if (!field || !field.type) {
-      console.error("Invalid field data:", field);
-      return null;
-    }
-
     const {
       type,
       knownValueDescriptions = [],
@@ -72,6 +46,7 @@ const PolicyForm = ({ storedData }) => {
       nestedFields = [],
     } = field;
 
+    // Calculate isActive unconditionally
     const isActive = useMemo(
       () => evaluateDependencies(fieldDependencies, fieldValues),
       [fieldDependencies, fieldValues]
@@ -117,8 +92,7 @@ const PolicyForm = ({ storedData }) => {
         );
 
       case "TYPE_BOOL":
-        console.log(knownValueDescriptions[0].description);
-        if (!knownValueDescriptions[0].description) {
+        if (!knownValueDescriptions[0]?.description) {
           return (
             <FormControl component="fieldset" style={{ marginBottom: "10px" }}>
               <FormLabel>{fieldLabel}</FormLabel>
