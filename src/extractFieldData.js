@@ -2,9 +2,15 @@ function getType(fieldName, allFields, isEnum) {
   const field = allFields.find((f) => f.name === fieldName);
   if (!field) return "TYPE_UNKNOWN";
   // If the field has knownValueDescriptions (isEnum is true), treat it as TYPE_ENUM
-  if (isEnum && (field.type === "TYPE_INT64" || field.type === "TYPE_STRING")) {
+  if (
+    isEnum &&
+    (field.type === "TYPE_INT64" ||
+      field.type === "TYPE_STRING" ||
+      field.type === "TYPE_INT32")
+  ) {
     return "TYPE_ENUM";
   }
+
   return field.type;
 }
 
@@ -22,13 +28,14 @@ function checkFieldDependencies(field, formData) {
 
 export function extractFieldData(jsonFile, formData = {}) {
   if (!jsonFile || !jsonFile.fieldDescriptions) return [];
-  
-  const policyDescription = jsonFile.policyDescription || "No description available";
+
+  const policyDescription =
+    jsonFile.policyDescription || "No description available";
   const allFields = jsonFile.definition.messageType.flatMap(
     (messageType) => messageType.field
   );
   const name = jsonFile.name;
-  
+
   // Extract main fieldDescriptions
   const extractedFields = jsonFile.fieldDescriptions.map((fieldDescription) => {
     const isEnum = !!fieldDescription.knownValueDescriptions;
@@ -53,15 +60,15 @@ export function extractFieldData(jsonFile, formData = {}) {
     extractedField.isActive = checkFieldDependencies(extractedField, formData);
     return extractedField;
   });
-  
+
   // Extract top-level nestedFieldDescriptions if present in jsonFile
-  const topLevelNestedFields = jsonFile.nestedFieldDescriptions 
+  const topLevelNestedFields = jsonFile.nestedFieldDescriptions
     ? extractNestedFields(
         jsonFile.nestedFieldDescriptions,
         allFields,
         "",
         formData
-      ) 
+      )
     : [];
 
   return {
@@ -69,7 +76,7 @@ export function extractFieldData(jsonFile, formData = {}) {
     policyDescription,
     fieldDescriptions: extractedFields,
     // Include the extracted top-level nested fields
-    nestedFieldDescriptions: topLevelNestedFields
+    nestedFieldDescriptions: topLevelNestedFields,
   };
 }
 
