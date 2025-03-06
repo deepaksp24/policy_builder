@@ -14,42 +14,29 @@ import {
 } from "@mui/material";
 
 const PolicyForm = ({ storedData }) => {
-  // State to manage field values for dependency evaluation
   const [fieldValues, setFieldValues] = useState({});
 
-  // Memoized handler to update field values
   const handleFieldChange = useCallback((fieldName, value) => {
-    setFieldValues((prevValues) => {
-      // Create a new object to trigger re-render
-      const updatedValues = {
-        ...prevValues,
-        [fieldName]: value,
-      };
-      return updatedValues;
-    });
+    setFieldValues((prevValues) => ({
+      ...prevValues,
+      [fieldName]: value,
+    }));
   }, []);
 
-  // Function to evaluate field dependencies
   const evaluateDependencies = useCallback(
     (fieldDependencies, currentFieldValues) => {
       if (!fieldDependencies || fieldDependencies.length === 0) return true;
 
-      return fieldDependencies.some((dependency) => {
+      return fieldDependencies.every((dependency) => {
         const fieldValue = currentFieldValues[dependency.sourceField];
-        return fieldValue === dependency.sourceFieldValue;
+        const expectedValue = dependency.sourceFieldValue;
+        return String(fieldValue) === String(expectedValue);
       });
     },
     []
   );
 
-  // Recursive component to render fields and nested fields
   const FieldRenderer = React.memo(({ field, fieldValues, onFieldChange }) => {
-    // Check if `field` is defined and has the required properties
-    if (!field || !field.type) {
-      console.error("Invalid field data:", field);
-      return null;
-    }
-
     const {
       type,
       knownValueDescriptions = [],
@@ -59,16 +46,16 @@ const PolicyForm = ({ storedData }) => {
       nestedFields = [],
     } = field;
 
-    // Memoized dependency evaluation
+    // Calculate isActive unconditionally
     const isActive = useMemo(
       () => evaluateDependencies(fieldDependencies, fieldValues),
       [fieldDependencies, fieldValues]
     );
 
-    // If the field is not active, return null
-    if (!isActive) return null;
+    if (!isActive) {
+      return null; // Hide the field if dependencies are not met
+    }
 
-    // If there are nested fields, recursively render them
     if (nestedFields && nestedFields.length > 0) {
       return (
         <Box>
@@ -86,7 +73,6 @@ const PolicyForm = ({ storedData }) => {
       );
     }
 
-    // Render fields based on their type
     switch (type) {
       case "TYPE_ENUM":
         return (
@@ -104,6 +90,7 @@ const PolicyForm = ({ storedData }) => {
             </Select>
           </FormControl>
         );
+
 
         case "TYPE_BOOL":
           if (!knownValueDescriptions[0]?.description) {
@@ -217,6 +204,5 @@ const PolicyForm = ({ storedData }) => {
   );
 };
 
+
 export default PolicyForm;
-
-
