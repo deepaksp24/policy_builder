@@ -1807,65 +1807,7 @@
     "categoryTitle": "Sign-in settings",
     "supportedPlatforms": ["CHROME_OS"]
 },
-{
-    "name": "customers/C022n8w1u/policySchemas/chrome.devices.SignInWallpaperImage",
-    "policyDescription": "Device wallpaper image.",
-    "definition": {
-        "messageType": [
-            {
-                "name": "SignInWallpaperImage",
-                "field": [
-                    {
-                        "name": "deviceWallpaperImage",
-                        "number": 1,
-                        "label": "LABEL_OPTIONAL",
-                        "type": "TYPE_MESSAGE",
-                        "typeName": "UploadedFile"
-                    }
-                ]
-            },
-            {
-                "name": "UploadedFile",
-                "field": [
-                    {
-                        "name": "downloadUri",
-                        "number": 1,
-                        "label": "LABEL_OPTIONAL",
-                        "type": "TYPE_STRING"
-                    }
-                ]
-            }
-        ]
-    },
-    "fieldDescriptions": [
-        {
-            "field": "deviceWallpaperImage",
-            "description": "Uploaded file can be one of the MIME types: [image/jpeg], and file size cannot exceed 16384kb. Configure device-level wallpaper image that is shown on the sign-in screen if no user has yet signed in to the device. The image must be in JPEG format, and its file size must not exceed 16 MB.",
-            "nestedFieldDescriptions": [
-                {
-                    "field": "downloadUri",
-                    "description": "The URI can be obtained by uploading your file via the upload service.",
-                    "name": "The URI can be obtained by uploading your file via the upload service.",
-                    "fieldConstraints": {}
-                }
-            ],
-            "name": "Uploaded file can be one of the MIME types: [image/jpeg], and file size cannot exceed 16384kb.",
-            "fieldDescription": "Configure device-level wallpaper image that is shown on the sign-in screen if no user has yet signed in to the device. The image must be in JPEG format, and its file size must not exceed 16 MB.",
-            "fieldConstraints": {
-                "uploadedFileConstraints": {
-                    "supportedContentTypes": ["CONTENT_TYPE_IMAGE_JPEG"],
-                    "sizeLimitBytes": "16777216"
-                }
-            }
-        }
-    ],
-    "supportUri": "https://support.google.com/chrome/a/answer/1375678?hl=en#device_wallpaper_image",
-    "schemaName": "chrome.devices.SignInWallpaperImage",
-    "validTargetResources": ["ORG_UNIT"],
-    "policyApiLifecycle": { "policyApiLifecycleStage": "API_CURRENT" },
-    "categoryTitle": "Sign-in settings",
-    "supportedPlatforms": ["CHROME_OS"]
-},
+
 {
     "name": "customers/C022n8w1u/policySchemas/chrome.devices.WipeUserData",
     "policyDescription": "Allows admins to make managed ChromeOS devices wipe user data after sign-out.",
