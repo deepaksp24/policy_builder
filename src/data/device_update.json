@@ -354,16 +354,7 @@
 						"description": "Disallow auto-reboots."
 					}
 				],
-				"fieldDependencies": [
-					{
-						"sourceField": "updateDisabled",
-						"sourceFieldValue": "true"
-					},
-					{
-						"sourceField": "updateDisabled",
-						"sourceFieldValue": "false"
-					}
-				],
+				
 				"defaultValue": false,
 				"name": "Auto reboot after updates.",
 				"fieldDescription": "Controls whether a managed ChromeOS device reboots after it is updated.",
@@ -383,14 +374,7 @@
 					}
 				],
 				"fieldDependencies": [
-					{
-						"sourceField": "updateDisabled",
-						"sourceFieldValue": "true"
-					},
-					{
-						"sourceField": "updateDisabled",
-						"sourceFieldValue": "false"
-					}
+					
 				],
 				"defaultValue": "AUTO_UPDATE_CONNECTION_TYPE_ENUM_WIFI_AND_ETHERNET",
 				"name": "Updates over cellular.",
@@ -535,14 +519,7 @@
 					}
 				],
 				"fieldDependencies": [
-					{
-						"sourceField": "updateDisabled",
-						"sourceFieldValue": "true"
-					},
-					{
-						"sourceField": "updateDisabled",
-						"sourceFieldValue": "false"
-					}
+					
 				],
 				"name": "Allows the admin to specify a timed rollout plan for automatic updates.",
 				"fieldConstraints": {}
@@ -641,14 +618,7 @@
 					}
 				],
 				"fieldDependencies": [
-					{
-						"sourceField": "updateDisabled",
-						"sourceFieldValue": "true"
-					},
-					{
-						"sourceField": "updateDisabled",
-						"sourceFieldValue": "false"
-					}
+					
 				],
 				"name": "Allows the admin to specify time restrictions for when automatic updates take place.",
 				"fieldConstraints": {}
@@ -1117,8 +1087,8 @@
 				"field": "wilcoScheduledUpdateEnabled",
 				"description": "Controls whether scheduled updates are enabled.",
 				"knownValueDescriptions": [
-					{ "value": "true","description":"ON" },
-					{ "value": "false","description":"OFF" }
+					{ "value": "true" },
+					{ "value": "false" }
 				],
 				"defaultValue": false,
 				"name": "Controls whether scheduled updates are enabled.",
