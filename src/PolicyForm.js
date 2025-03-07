@@ -12,7 +12,7 @@ import {
   Box,
   Switch,
 } from "@mui/material";
-
+import RepeatedField from "./RepeatedField";
 const PolicyForm = ({ storedData }) => {
   const [fieldValues, setFieldValues] = useState({});
 
@@ -39,6 +39,7 @@ const PolicyForm = ({ storedData }) => {
   const FieldRenderer = React.memo(({ field, fieldValues, onFieldChange }) => {
     const {
       type,
+      label,
       knownValueDescriptions = [],
       defaultValue,
       field: fieldLabel,
@@ -75,21 +76,35 @@ const PolicyForm = ({ storedData }) => {
 
     switch (type) {
       case "TYPE_ENUM":
-        return (
-          <FormControl fullWidth style={{ marginBottom: "10px" }}>
-            <InputLabel>{fieldLabel}</InputLabel>
-            <Select
-              value={fieldValues[fieldLabel] ?? defaultValue}
-              onChange={(e) => onFieldChange(fieldLabel, e.target.value)}
-            >
-              {knownValueDescriptions.map((item, index) => (
-                <MenuItem key={index} value={item.value}>
-                  {item.description}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        );
+        if (label === "LABEL_REPEATED") {
+          return (
+            <RepeatedField
+              fieldLabel={fieldLabel}
+              knownValueDescriptions={knownValueDescriptions}
+              fieldValues={fieldValues}
+              onFieldChange={onFieldChange}
+              defaultValue={defaultValue}
+            />
+          );
+        } else {
+          // Render the default Select component for TYPE_ENUM
+          return (
+            <FormControl fullWidth style={{ marginBottom: "15px" }}>
+              <InputLabel>{fieldLabel}</InputLabel>
+
+              <Select
+                value={fieldValues[fieldLabel] ?? defaultValue}
+                onChange={(e) => onFieldChange(fieldLabel, e.target.value)}
+              >
+                {knownValueDescriptions.map((item, index) => (
+                  <MenuItem key={index} value={item.value}>
+                    {item.description}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          );
+        }
 
       case "TYPE_BOOL":
         if (!knownValueDescriptions[0]?.description) {

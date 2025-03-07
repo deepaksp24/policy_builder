@@ -426,6 +426,7 @@
 								"description": "Scatter updates."
 							}
 						],
+						"defaultValue":"DEFAULT_UPDATES",
 						"name": "Update rollout plan.",
 						"fieldConstraints": {}
 					},
@@ -447,6 +448,12 @@
 							}
 						],
 						"name": "Rollout stages.",
+						"fieldDependencies":[
+							{
+							"sourceField": "plan",
+							"sourceFieldValue": "SCHEDULE_UPDATES"
+							}
+					],
 						"fieldConstraints": {}
 					},
 					{
@@ -617,9 +624,7 @@
 						"fieldConstraints": {}
 					}
 				],
-				"fieldDependencies": [
-					
-				],
+				"fieldDependencies": [],
 				"name": "Allows the admin to specify time restrictions for when automatic updates take place.",
 				"fieldConstraints": {}
 			},
