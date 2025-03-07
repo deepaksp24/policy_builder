@@ -14,6 +14,12 @@ function getType(fieldName, allFields, isEnum) {
   return field.type;
 }
 
+function getLabel(fieldName, allFields) {
+  const field = allFields.find((f) => f.name === fieldName);
+  if (!field) return "TYPE_UNKNOWN";
+  return field.label;
+}
+
 function checkFieldDependencies(field, formData) {
   // If no dependencies, field is always active
   if (!field.fieldDependencies || field.fieldDependencies.length === 0) {
@@ -44,6 +50,7 @@ export function extractFieldData(jsonFile, formData = {}) {
       field: fieldDescription.field,
       description: fieldDescription.description || "No description available",
       type: getType(fieldDescription.field, allFields, isEnum),
+      label: getLabel(fieldDescription.field, allFields),
       defaultValue: fieldDescription.defaultValue,
       knownValueDescriptions: isEnum
         ? fieldDescription.knownValueDescriptions
