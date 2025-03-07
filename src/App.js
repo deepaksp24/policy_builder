@@ -14,11 +14,10 @@ function App() {
 
   return (
     <div>
-      <h1>Extracted JSON Data</h1>
       {/* <pre>{JSON.stringify(storedData, null, 2)}</pre> */}
       <Box
         component="section"
-        sx={{ p: 2, border: "1px dashed grey", width: 1000, heigh: 100 }}
+        sx={{ p: 2,  width: 700, heigh: 100 }}
       >
         <PolicyForm storedData={storedData} />
       </Box>
