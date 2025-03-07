@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import sample from "./data/power_shutdown.json";
+import sample from "./data/user_device_reporting.json";
 import { extractFieldData } from "./extractFieldData";
 import PolicyForm from "./PolicyForm";
 import Box from "@mui/material/Box";
@@ -15,7 +15,7 @@ function App() {
   return (
     <div>
       <h1>Extracted JSON Data</h1>
-      {/* <pre>{JSON.stringify(storedData, null, 2)}</pre> */}
+      <pre>{JSON.stringify(storedData, null, 2)}</pre>
       <Box
         component="section"
         sx={{ p: 2, border: "1px dashed grey", width: 1000, heigh: 100 }}

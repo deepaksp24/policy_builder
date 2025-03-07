@@ -91,56 +91,67 @@ const PolicyForm = ({ storedData }) => {
           </FormControl>
         );
 
-
-        case "TYPE_BOOL":
-          if (!knownValueDescriptions[0]?.description) {
-            return (
-              <FormControl component="fieldset" style={{ marginBottom: "10px" }}>
-                <FormLabel>{fieldLabel}</FormLabel>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      checked={
-                        fieldValues[fieldLabel] === "true" ||
-                        fieldValues[fieldLabel] === true
-                      }
-                      onChange={(e) =>
-                        onFieldChange(fieldLabel, e.target.checked.toString())
-                      }
-                      color="primary"
-                    />
-                  }
-                  label={
-                    knownValueDescriptions.length > 0
-                      ? knownValueDescriptions[0].description
-                      : fieldLabel
-                  }
-                />
-              </FormControl>
-            );
-          } else {
-            return (
-              <FormControl component="fieldset" style={{ marginBottom: "10px" }}>
-                <FormLabel>{fieldLabel}</FormLabel>
-                <RadioGroup
-                  row
-                  value={fieldValues[fieldLabel] ?? defaultValue.toString()}
-                  onChange={(e) => onFieldChange(fieldLabel, e.target.value)}
-                >
-                  {knownValueDescriptions.map((item, index) => (
-                    <FormControlLabel
-                      key={index}
-                      value={item.value}
-                      control={<Radio />}
-                      label={item.description}
-                    />
-                  ))}
-                </RadioGroup>
-              </FormControl>
-            );
-          }
+      case "TYPE_BOOL":
+        if (!knownValueDescriptions[0]?.description) {
+          return (
+            <FormControl component="fieldset" style={{ marginBottom: "10px" }}>
+              <FormLabel>{fieldLabel}</FormLabel>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={
+                      fieldValues[fieldLabel] === "true" ||
+                      fieldValues[fieldLabel] === true
+                    }
+                    onChange={(e) =>
+                      onFieldChange(fieldLabel, e.target.checked.toString())
+                    }
+                    color="primary"
+                  />
+                }
+                label={
+                  knownValueDescriptions.length > 0
+                    ? knownValueDescriptions[0].description
+                    : fieldLabel
+                }
+              />
+            </FormControl>
+          );
+        } else {
+          return (
+            <FormControl component="fieldset" style={{ marginBottom: "10px" }}>
+              <FormLabel>{fieldLabel}</FormLabel>
+              <RadioGroup
+                row
+                value={fieldValues[fieldLabel] ?? defaultValue.toString()}
+                onChange={(e) => onFieldChange(fieldLabel, e.target.value)}
+              >
+                {knownValueDescriptions.map((item, index) => (
+                  <FormControlLabel
+                    key={index}
+                    value={item.value}
+                    control={<Radio />}
+                    label={item.description}
+                  />
+                ))}
+              </RadioGroup>
+            </FormControl>
+          );
+        }
 
       case "TYPE_INT64":
+        return (
+          <TextField
+            label={fieldLabel}
+            type="number"
+            fullWidth
+            value={fieldValues[fieldLabel] ?? defaultValue}
+            style={{ marginBottom: "10px" }}
+            onChange={(e) => onFieldChange(fieldLabel, e.target.value)}
+          />
+        );
+
+      case "TYPE_INT32":
         return (
           <TextField
             label={fieldLabel}
@@ -163,6 +174,43 @@ const PolicyForm = ({ storedData }) => {
             onChange={(e) => onFieldChange(fieldLabel, e.target.value)}
           />
         );
+
+      case "TYPE_MESSAGE":
+        if (!nestedFields || nestedFields.length === 0) {
+          // If there are no nested fields, render a multiline TextField
+          return (
+            <TextField
+              label={fieldLabel}
+              type="text"
+              fullWidth
+              multiline
+              minRows={3}
+              value={fieldValues[fieldLabel] ?? defaultValue}
+              style={{ marginBottom: "10px" }}
+              onChange={(e) => onFieldChange(fieldLabel, e.target.value)}
+            />
+          );
+        } else {
+          // If there are nested fields, recursively call FieldRenderer for each nested field
+          return (
+            <Box>
+              <FormLabel>{fieldLabel}</FormLabel>
+              {nestedFields.map((nestedField, index) => (
+                <Box
+                  key={index}
+                  style={{ marginLeft: "20px", marginTop: "10px" }}
+                >
+                  {/* Recursively call FieldRenderer with the nested field and required values */}
+                  <FieldRenderer
+                    field={nestedField}
+                    fieldValues={fieldValues}
+                    onFieldChange={onFieldChange}
+                  />
+                </Box>
+              ))}
+            </Box>
+          );
+        }
 
       default:
         return null;
@@ -203,6 +251,5 @@ const PolicyForm = ({ storedData }) => {
     </div>
   );
 };
-
 
 export default PolicyForm;
