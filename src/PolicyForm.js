@@ -151,6 +151,18 @@ const PolicyForm = ({ storedData }) => {
           />
         );
 
+      case "TYPE_INT32":
+        return (
+          <TextField
+            label={fieldLabel}
+            type="number"
+            fullWidth
+            value={fieldValues[fieldLabel] ?? defaultValue}
+            style={{ marginBottom: "10px" }}
+            onChange={(e) => onFieldChange(fieldLabel, e.target.value)}
+          />
+        );
+
       case "TYPE_STRING":
         return (
           <TextField
@@ -164,18 +176,41 @@ const PolicyForm = ({ storedData }) => {
         );
 
       case "TYPE_MESSAGE":
-        return (
-          <TextField
-            label={fieldLabel}
-            type="text"
-            fullWidth
-            multiline // Enables multiline input
-            minRows={3} // Minimum number of rows to display
-            value={fieldValues[fieldLabel] ?? defaultValue}
-            style={{ marginBottom: "10px" }}
-            onChange={(e) => onFieldChange(fieldLabel, e.target.value)}
-          />
-        );
+        if (!nestedFields || nestedFields.length === 0) {
+          // If there are no nested fields, render a multiline TextField
+          return (
+            <TextField
+              label={fieldLabel}
+              type="text"
+              fullWidth
+              multiline
+              minRows={3}
+              value={fieldValues[fieldLabel] ?? defaultValue}
+              style={{ marginBottom: "10px" }}
+              onChange={(e) => onFieldChange(fieldLabel, e.target.value)}
+            />
+          );
+        } else {
+          // If there are nested fields, recursively call FieldRenderer for each nested field
+          return (
+            <Box>
+              <FormLabel>{fieldLabel}</FormLabel>
+              {nestedFields.map((nestedField, index) => (
+                <Box
+                  key={index}
+                  style={{ marginLeft: "20px", marginTop: "10px" }}
+                >
+                  {/* Recursively call FieldRenderer with the nested field and required values */}
+                  <FieldRenderer
+                    field={nestedField}
+                    fieldValues={fieldValues}
+                    onFieldChange={onFieldChange}
+                  />
+                </Box>
+              ))}
+            </Box>
+          );
+        }
 
       default:
         return null;
