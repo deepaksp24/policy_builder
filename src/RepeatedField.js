@@ -12,27 +12,26 @@ import AddIcon from "@mui/icons-material/Add";
 
 const RepeatedField = ({
   fieldLabel,
-  knownValueDescriptions,
+  knownValueDescriptions = [], // Default to an empty array
   fieldValues,
   onFieldChange,
-  defaultValue = [], // Default values passed as prop
+  defaultValue = [], // Default to an empty array
 }) => {
   const [anchorEl, setAnchorEl] = useState(null); // For the add options menu
-  const [selectedOptions, setSelectedOptions] = useState(defaultValue); // Initialize with defaultValue
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
-  // Sync selectedOptions with fieldValues when defaultValue changes
+  // Sync selectedOptions with fieldValues or defaultValue
   useEffect(() => {
-    if (fieldValues[fieldLabel]) {
-      setSelectedOptions(fieldValues[fieldLabel]);
-    } else {
-      setSelectedOptions(defaultValue);
-    }
+    const currentValues = fieldValues[fieldLabel] || defaultValue;
+    setSelectedOptions(Array.isArray(currentValues) ? currentValues : []);
   }, [fieldValues, fieldLabel, defaultValue]);
 
+  // Handle opening the add options menu
   const handleAddClick = (event) => {
-    setAnchorEl(event.currentTarget); // Open the menu
+    setAnchorEl(event.currentTarget);
   };
 
+  // Handle adding a new option
   const handleAddOption = (value) => {
     if (!selectedOptions.includes(value)) {
       const newSelectedOptions = [...selectedOptions, value];
@@ -42,11 +41,17 @@ const RepeatedField = ({
     setAnchorEl(null); // Close the menu
   };
 
+  // Handle removing an option
   const handleRemoveOption = (value) => {
     const newSelectedOptions = selectedOptions.filter((v) => v !== value);
     setSelectedOptions(newSelectedOptions);
     onFieldChange(fieldLabel, newSelectedOptions); // Update parent component
   };
+
+  // Filter out already selected options
+  const availableOptions = knownValueDescriptions.filter(
+    (item) => !selectedOptions.includes(item.value)
+  );
 
   return (
     <Box>
@@ -74,34 +79,44 @@ const RepeatedField = ({
             color="textSecondary"
             style={{ margin: "4px" }}
           >
-            Add an item
+            No items selected
           </Typography>
         )}
         {/* Add button to open the menu */}
-        <IconButton onClick={handleAddClick}>
+        <IconButton
+          onClick={handleAddClick}
+          aria-label="Add option"
+          aria-controls="add-option-menu"
+          aria-haspopup="true"
+        >
           <AddIcon />
         </IconButton>
       </Box>
 
       {/* Menu for adding options */}
       <Menu
+        id="add-option-menu"
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={() => setAnchorEl(null)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        transformOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        {knownValueDescriptions
-          .filter((item) => !selectedOptions.includes(item.value))
-          .map((item) => (
+        {availableOptions.length > 0 ? (
+          availableOptions.map((item) => (
             <MenuItem
               key={item.value}
               onClick={() => handleAddOption(item.value)}
             >
               {item.description}
             </MenuItem>
-          ))}
+          ))
+        ) : (
+          <MenuItem disabled>No more options available</MenuItem>
+        )}
       </Menu>
     </Box>
   );
 };
 
-export default RepeatedField;
+export default React.memo(RepeatedField);

@@ -14,11 +14,8 @@ function App() {
 
   return (
     <div>
-      {/* <pre>{JSON.stringify(storedData, null, 2)}</pre> */}
-      <Box
-        component="section"
-        sx={{ p: 2,  width: 700, heigh: 100 }}
-      >
+      <pre>{JSON.stringify(storedData, null, 2)}</pre>
+      <Box component="section" sx={{ p: 2, width: 700, heigh: 100 }}>
         <PolicyForm storedData={storedData} />
       </Box>
     </div>
