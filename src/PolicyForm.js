@@ -12,10 +12,11 @@ import {
   Box,
   Switch,
   Typography,
+  Button,
 } from "@mui/material";
 import RepeatedField from "./RepeatedField";
 
-const PolicyForm = ({ storedData }) => {
+const PolicyForm = ({ storedData, onSave, onCancel }) => {
   const [fieldValues, setFieldValues] = useState({});
 
   // Initialize fieldValues with default values when the component mounts
@@ -50,6 +51,50 @@ const PolicyForm = ({ storedData }) => {
     },
     []
   );
+
+  // Recursive function to handle nested fields
+  const processField = (field, currentFieldValues) => {
+    const { field: fieldName, nestedFields } = field;
+
+    if (nestedFields && nestedFields.length > 0) {
+      // If the field has nested fields, recursively process them
+      const nestedResult = {};
+      nestedFields.forEach((nestedField) => {
+        const nestedFieldName = nestedField.field;
+        nestedResult[nestedFieldName] = processField(
+          nestedField,
+          currentFieldValues
+        );
+      });
+      return nestedResult;
+    } else {
+      // If it's a regular field, return its value
+      return currentFieldValues[fieldName] ?? field.defaultValue;
+    }
+  };
+
+  const handleSave = () => {
+    const result = {};
+
+    storedData.forEach((policy) => {
+      const policyResult = {};
+      policy.fieldDescriptions.forEach((field) => {
+        const fieldName = field.field;
+        policyResult[fieldName] = processField(field, fieldValues);
+      });
+
+      // Group by policyDescription
+      result[policy.policyDescription] = policyResult;
+    });
+
+    // Call the onSave prop with the grouped result
+    onSave(result);
+  };
+
+  const handleCancel = () => {
+    // Call the onCancel prop
+    onCancel();
+  };
 
   const FieldRenderer = React.memo(({ field, fieldValues, onFieldChange }) => {
     const {
@@ -492,6 +537,38 @@ const PolicyForm = ({ storedData }) => {
           )}
         </Box>
       ))}
+
+      {/* Save and Cancel Buttons */}
+      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 3, gap: 2 }}>
+        <Button
+          variant="outlined"
+          onClick={handleCancel}
+          sx={{
+            textTransform: "none",
+            color: "#4caf50",
+            borderColor: "#4caf50",
+            "&:hover": {
+              backgroundColor: "#e8f5e9",
+              borderColor: "#4caf50",
+            },
+          }}
+        >
+          Cancel
+        </Button>
+        <Button
+          variant="contained"
+          onClick={handleSave}
+          sx={{
+            textTransform: "none",
+            backgroundColor: "#4caf50",
+            "&:hover": {
+              backgroundColor: "#388e3c",
+            },
+          }}
+        >
+          Save
+        </Button>
+      </Box>
     </Box>
   );
 };

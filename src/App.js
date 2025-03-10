@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import sample from "./data/user_device_reporting.json";
+import sample from "./data/device_update.json";
 import { extractFieldData } from "./extractFieldData";
 import PolicyForm from "./PolicyForm";
 import Box from "@mui/material/Box";
@@ -12,12 +12,17 @@ function App() {
     setStoredData(extractedData); // Store the result in state
   }, []);
 
+  const handleSave = (fieldValues) => {
+    console.log("Saved values:", fieldValues);
+    // Perform save logic here
+  };
+
   return (
     <div>
-      <pre>{JSON.stringify(storedData, null, 2)}</pre>
       <Box component="section" sx={{ p: 2, width: 700, heigh: 100 }}>
-        <PolicyForm storedData={storedData} />
+        <PolicyForm storedData={storedData} onSave={handleSave} />
       </Box>
+      <pre>{JSON.stringify(storedData, null, 2)}</pre>
     </div>
   );
 }
