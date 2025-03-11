@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import {
   TextField,
   Select,
@@ -12,11 +12,25 @@ import {
   Box,
   Switch,
   Typography,
+  Button,
 } from "@mui/material";
-import RepeatedField from "./RepeatedField"
+import RepeatedField from "./RepeatedField";
 
-const PolicyForm = ({ storedData }) => {
+const PolicyForm = ({ storedData, onSave, onCancel }) => {
   const [fieldValues, setFieldValues] = useState({});
+
+  // Initialize fieldValues with default values when the component mounts
+  useEffect(() => {
+    const initialValues = {};
+    storedData.forEach((policy) => {
+      policy.fieldDescriptions.forEach((field) => {
+        if (field.defaultValue !== undefined) {
+          initialValues[field.field] = field.defaultValue;
+        }
+      });
+    });
+    setFieldValues(initialValues);
+  }, [storedData]);
 
   const handleFieldChange = useCallback((fieldName, value) => {
     setFieldValues((prevValues) => ({
@@ -37,6 +51,50 @@ const PolicyForm = ({ storedData }) => {
     },
     []
   );
+
+  // Recursive function to handle nested fields
+  const processField = (field, currentFieldValues) => {
+    const { field: fieldName, nestedFields } = field;
+
+    if (nestedFields && nestedFields.length > 0) {
+      // If the field has nested fields, recursively process them
+      const nestedResult = {};
+      nestedFields.forEach((nestedField) => {
+        const nestedFieldName = nestedField.field;
+        nestedResult[nestedFieldName] = processField(
+          nestedField,
+          currentFieldValues
+        );
+      });
+      return nestedResult;
+    } else {
+      // If it's a regular field, return its value
+      return currentFieldValues[fieldName] ?? field.defaultValue;
+    }
+  };
+
+  const handleSave = () => {
+    const result = {};
+
+    storedData.forEach((policy) => {
+      const policyResult = {};
+      policy.fieldDescriptions.forEach((field) => {
+        const fieldName = field.field;
+        policyResult[fieldName] = processField(field, fieldValues);
+      });
+
+      // Group by policyDescription
+      result[policy.policyDescription] = policyResult;
+    });
+
+    // Call the onSave prop with the grouped result
+    onSave(result);
+  };
+
+  const handleCancel = () => {
+    // Call the onCancel prop
+    onCancel();
+  };
 
   const FieldRenderer = React.memo(({ field, fieldValues, onFieldChange }) => {
     const {
@@ -90,96 +148,97 @@ const PolicyForm = ({ storedData }) => {
               defaultValue={defaultValue}
             />
           );
-        } else{
-        return (
-          <FormControl 
-            fullWidth 
-            sx={{ 
-              mb: 2.5,
-              mt: 2.5, // Added top margin to create space for the label
-              position: "relative",
-              "& .MuiOutlinedInput-root": {
-                borderRadius: 1,
-              },
-              "& .MuiInputLabel-root": {
-                fontSize: "0.9rem",
-                color: "rgba(0, 0, 0, 0.6)",
-                transform: "translate(14px, 14px) scale(1)",
-                backgroundColor: "white",
-                padding: "0 4px",
-              },
-              "& .MuiInputLabel-shrink": {
-                transform: "translate(14px, -6px) scale(0.75)",
-              }
-            }}
-          >
-            {/* Custom label rendering for all dropdown fields */}
-            <Typography
-              component="span"
+        } else {
+          return (
+            <FormControl
+              fullWidth
               sx={{
-                position: "absolute",
-                top: "-20px",
-                left: "0px",
-                fontSize: "0.75rem",
-                color: "rgba(0, 0, 0, 0.6)",
+                mb: 2.5,
+                mt: 2.5, // Added top margin to create space for the label
+                position: "relative",
+                "& .MuiOutlinedInput-root": {
+                  borderRadius: 1,
+                },
+                "& .MuiInputLabel-root": {
+                  fontSize: "0.9rem",
+                  color: "rgba(0, 0, 0, 0.6)",
+                  transform: "translate(14px, 14px) scale(1)",
+                  backgroundColor: "white",
+                  padding: "0 4px",
+                },
+                "& .MuiInputLabel-shrink": {
+                  transform: "translate(14px, -6px) scale(0.75)",
+                },
               }}
             >
-              {fieldLabel}
-            </Typography>
-            
-            {/* Hide the standard label since we're using custom label */}
-            <InputLabel 
-              id={`${fieldLabel}-label`}
-              sx={{ 
-                display: "none" 
-              }}
-            >
-              {fieldLabel}
-            </InputLabel>
-            
-            <Select
-              labelId={`${fieldLabel}-label`}
-              value={fieldValues[fieldLabel] ?? defaultValue}
-              onChange={(e) => onFieldChange(fieldLabel, e.target.value)}
-              label=""
-              sx={{ 
-                height: "48px",
-                ".MuiSelect-select": {
-                  pt: 1.5,
-                  pb: 1.5,
-                  pl: 2,
-                }
-              }}
-            >
-              {knownValueDescriptions.map((item, index) => (
-                <MenuItem key={index} value={item.value}>
-                  {item.description}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        );}
+              {/* Custom label rendering for all dropdown fields */}
+              <Typography
+                component="span"
+                sx={{
+                  position: "absolute",
+                  top: "-20px",
+                  left: "0px",
+                  fontSize: "0.75rem",
+                  color: "rgba(0, 0, 0, 0.6)",
+                }}
+              >
+                {fieldLabel}
+              </Typography>
+
+              {/* Hide the standard label since we're using custom label */}
+              <InputLabel
+                id={`${fieldLabel}-label`}
+                sx={{
+                  display: "none",
+                }}
+              >
+                {fieldLabel}
+              </InputLabel>
+
+              <Select
+                labelId={`${fieldLabel}-label`}
+                value={fieldValues[fieldLabel] ?? defaultValue}
+                onChange={(e) => onFieldChange(fieldLabel, e.target.value)}
+                label=""
+                sx={{
+                  height: "48px",
+                  ".MuiSelect-select": {
+                    pt: 1.5,
+                    pb: 1.5,
+                    pl: 2,
+                  },
+                }}
+              >
+                {knownValueDescriptions.map((item, index) => (
+                  <MenuItem key={index} value={item.value}>
+                    {item.description}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          );
+        }
 
       case "TYPE_BOOL":
         if (!knownValueDescriptions[0]?.description) {
           return (
-            <FormControl 
-              component="fieldset" 
-              sx={{ 
+            <FormControl
+              component="fieldset"
+              sx={{
                 mb: 2.5,
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
-                justifyContent: "space-between"
+                justifyContent: "space-between",
               }}
             >
-              <FormLabel 
-                sx={{ 
+              <FormLabel
+                sx={{
                   fontSize: "0.9rem",
                   color: "rgba(0, 0, 0, 0.87)",
                   "&.Mui-focused": {
-                    color: "rgba(0, 0, 0, 0.87)"
-                  }
+                    color: "rgba(0, 0, 0, 0.87)",
+                  },
                 }}
               >
                 {fieldLabel}
@@ -197,16 +256,16 @@ const PolicyForm = ({ storedData }) => {
                     color="success"
                     sx={{
                       ".MuiSwitch-track": {
-                        backgroundColor: "#ccc"
+                        backgroundColor: "#ccc",
                       },
                       "&.Mui-checked": {
                         "& + .MuiSwitch-track": {
-                          backgroundColor: "#4caf50 !important"
+                          backgroundColor: "#4caf50 !important",
                         },
                         "& .MuiSwitch-thumb": {
-                          backgroundColor: "#2e7d32"
-                        }
-                      }
+                          backgroundColor: "#2e7d32",
+                        },
+                      },
                     }}
                   />
                 }
@@ -220,28 +279,28 @@ const PolicyForm = ({ storedData }) => {
                   m: 0,
                   "& .MuiFormControlLabel-label": {
                     fontSize: "0.9rem",
-                  }
+                  },
                 }}
               />
             </FormControl>
           );
         } else {
           return (
-            <FormControl 
-              component="fieldset" 
-              sx={{ 
+            <FormControl
+              component="fieldset"
+              sx={{
                 mb: 2.5,
-                display: "block"
+                display: "block",
               }}
             >
-              <FormLabel 
-                sx={{ 
+              <FormLabel
+                sx={{
                   fontSize: "0.9rem",
                   color: "rgba(0, 0, 0, 0.87)",
                   mb: 1,
                   "&.Mui-focused": {
-                    color: "rgba(0, 0, 0, 0.87)"
-                  }
+                    color: "rgba(0, 0, 0, 0.87)",
+                  },
                 }}
               >
                 {fieldLabel}
@@ -252,8 +311,8 @@ const PolicyForm = ({ storedData }) => {
                 onChange={(e) => onFieldChange(fieldLabel, e.target.value)}
                 sx={{
                   ".MuiFormControlLabel-root": {
-                    marginRight: 4
-                  }
+                    marginRight: 4,
+                  },
                 }}
               >
                 {knownValueDescriptions.map((item, index) => (
@@ -261,20 +320,20 @@ const PolicyForm = ({ storedData }) => {
                     key={index}
                     value={item.value}
                     control={
-                      <Radio 
+                      <Radio
                         sx={{
                           color: "rgba(0, 0, 0, 0.54)",
                           "&.Mui-checked": {
-                            color: "#4caf50"
-                          }
+                            color: "#4caf50",
+                          },
                         }}
                       />
                     }
                     label={item.description}
                     sx={{
                       "& .MuiFormControlLabel-label": {
-                        fontSize: "0.9rem"
-                      }
+                        fontSize: "0.9rem",
+                      },
                     }}
                   />
                 ))}
@@ -303,7 +362,7 @@ const PolicyForm = ({ storedData }) => {
               },
               "& .MuiInputLabel-root": {
                 display: "none",
-              }
+              },
             }}
             InputLabelProps={{
               shrink: true,
@@ -347,7 +406,7 @@ const PolicyForm = ({ storedData }) => {
               },
               "& .MuiInputLabel-root": {
                 display: "none",
-              }
+              },
             }}
             InputLabelProps={{
               shrink: true,
@@ -393,7 +452,7 @@ const PolicyForm = ({ storedData }) => {
                 },
                 "& .MuiInputLabel-root": {
                   display: "none",
-                }
+                },
               }}
               InputLabelProps={{
                 shrink: true,
@@ -453,7 +512,7 @@ const PolicyForm = ({ storedData }) => {
             backgroundColor: "#ffffff",
             p: 3,
             borderRadius: 1,
-            boxShadow: "0 1px 3px rgba(0,0,0,0.08)"
+            boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
           }}
         >
           <Typography variant="h6" sx={{ mb: 2, fontWeight: 500 }}>
@@ -478,6 +537,38 @@ const PolicyForm = ({ storedData }) => {
           )}
         </Box>
       ))}
+
+      {/* Save and Cancel Buttons */}
+      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 3, gap: 2 }}>
+        <Button
+          variant="outlined"
+          onClick={handleCancel}
+          sx={{
+            textTransform: "none",
+            color: "#4caf50",
+            borderColor: "#4caf50",
+            "&:hover": {
+              backgroundColor: "#e8f5e9",
+              borderColor: "#4caf50",
+            },
+          }}
+        >
+          Cancel
+        </Button>
+        <Button
+          variant="contained"
+          onClick={handleSave}
+          sx={{
+            textTransform: "none",
+            backgroundColor: "#4caf50",
+            "&:hover": {
+              backgroundColor: "#388e3c",
+            },
+          }}
+        >
+          Save
+        </Button>
+      </Box>
     </Box>
   );
 };
