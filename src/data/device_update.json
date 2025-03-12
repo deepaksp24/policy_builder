@@ -373,9 +373,7 @@
 						"description": "Allow automatic updates on all connections, including cellular."
 					}
 				],
-				"fieldDependencies": [
-					
-				],
+				"fieldDependencies": [],
 				"defaultValue": "AUTO_UPDATE_CONNECTION_TYPE_ENUM_WIFI_AND_ETHERNET",
 				"name": "Updates over cellular.",
 				"fieldDescription": "Controls whether a managed ChromeOS device updates over Wi-Fi and Ethernet only or using any connection type, including cellular.",

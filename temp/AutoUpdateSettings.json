@@ -1,0 +1,60 @@
+[
+    {
+    "updateDisabled": false,
+    "rebootAfterUpdate": true,
+    "autoUpdateAllowedConnectionType": "AUTO_UPDATE_CONNECTION_TYPE_ENUM_WIFI_AND_ETHERNET",
+    "deviceRollbackToTargetVersion": "ROLLBACK_TO_TARGET_VERSION_ENUM_ROLLBACK_DISABLED",
+    "autoUpdateRolloutPlan": 
+    {
+      "plan": "SCHEDULE_UPDATES",
+      "stages": 
+      [
+        {
+          "days": 7,
+          "percentage": 25
+        },
+        {
+          "days": 14,
+          "percentage": 50
+        },
+        {
+          "days": 21,
+          "percentage": 100
+        }
+      ],
+      "scatter": "NO_SCATTER_FACTOR"
+    },
+    "autoUpdateTimeRestrictions": 
+    {
+      "timeRestriction": 
+      [
+        {
+          "start": {
+            "dayOfWeek": "MONDAY",
+            "hours": 9,
+            "minutes": 0
+          },
+          "end": {
+            "dayOfWeek": "FRIDAY",
+            "hours": 17,
+            "minutes": 0
+          }
+        }
+      ]
+    },
+    "autoUpdateTargetVersionLts": {
+      "selectedVersion": {
+        "displayName": "126.* (long-term support)"
+      }
+    },
+    "deviceMinimumVersionAueMessage": "Your device will no longer receive updates after [DATE]. Please contact your administrator.",
+    "deviceMinimumVersion": {
+      "chromeosVersion": "126.*",
+      "aueWarningPeriodDays": 28,
+      "warningPeriodDays": 14
+    },
+    "autoUpdateHttpDownloadsEnabled": false,
+    "releaseChannelWithLts": "RELEASE_CHANNEL_WITH_LTS_ENUM_STABLE_CHANNEL",
+    "deviceAutoUpdatePeerToPeerEnabled": true
+  }
+]

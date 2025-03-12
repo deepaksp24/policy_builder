@@ -5,7 +5,8 @@ import PolicyForm from "./PolicyForm";
 import Box from "@mui/material/Box";
 
 function App() {
-  const [storedData, setStoredData] = useState([]); // Store extracted data for all policies
+  const [storedData, setStoredData] = useState([]);
+  const [savedValues, setSavedValues] = useState(null);
 
   useEffect(() => {
     const extractedData = sample.map((policy) => extractFieldData(policy)); // Process each policy
@@ -14,15 +15,16 @@ function App() {
 
   const handleSave = (fieldValues) => {
     console.log("Saved values:", fieldValues);
-    // Perform save logic here
+    setSavedValues(fieldValues);
   };
 
   return (
     <div>
-      <Box component="section" sx={{ p: 2, width: 700, heigh: 100 }}>
+      <Box component="section" sx={{ p: 2, width: 700 }}>
         <PolicyForm storedData={storedData} onSave={handleSave} />
       </Box>
-      <pre>{JSON.stringify(storedData, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(storedData, null, 2)}</pre> */}
+      {savedValues && <pre>{JSON.stringify(savedValues, null, 2)}</pre>}
     </div>
   );
 }
