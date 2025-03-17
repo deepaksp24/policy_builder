@@ -25,9 +25,13 @@ function checkFieldDependencies(field, formData) {
   if (!field.fieldDependencies || field.fieldDependencies.length === 0) {
     return true;
   }
+
+  console.log("field", field, "formdata", formData);
+
   // Check if any dependency condition is met
   return field.fieldDependencies.some((dependency) => {
-      const sourceValue = formData[dependency.sourceField];
+    const sourceValue = formData[dependency.sourceField];
+    console.log(sourceValue, dependency.sourceFieldValue);
     return sourceValue === dependency.sourceFieldValue;
   });
 }
