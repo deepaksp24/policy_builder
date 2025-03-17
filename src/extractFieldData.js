@@ -25,9 +25,13 @@ function checkFieldDependencies(field, formData) {
   if (!field.fieldDependencies || field.fieldDependencies.length === 0) {
     return true;
   }
+
+  console.log("field", field, "formdata", formData);
+
   // Check if any dependency condition is met
   return field.fieldDependencies.some((dependency) => {
     const sourceValue = formData[dependency.sourceField];
+    console.log(sourceValue, dependency.sourceFieldValue);
     return sourceValue === dependency.sourceFieldValue;
   });
 }
@@ -41,6 +45,28 @@ export function extractFieldData(jsonFile, formData = {}) {
     (messageType) => messageType.field
   );
   const name = jsonFile.name;
+
+  // Helper function to populate formData with fields that have default values
+  const populateFormData = (fields, parentFieldName = "") => {
+    fields.forEach((field) => {
+      const fullFieldName = parentFieldName
+        ? `${parentFieldName}.${field.field}`
+        : field.field;
+
+      // Add the field to formData only if it has a default value
+      if (
+        field.defaultValue !== undefined &&
+        formData[fullFieldName] === undefined
+      ) {
+        formData[fullFieldName] = field.defaultValue;
+      }
+
+      // Recursively populate nested fields
+      if (field.nestedFields && field.nestedFields.length > 0) {
+        populateFormData(field.nestedFields, fullFieldName);
+      }
+    });
+  };
 
   // Extract main fieldDescriptions
   const extractedFields = jsonFile.fieldDescriptions.map((fieldDescription) => {
@@ -68,6 +94,9 @@ export function extractFieldData(jsonFile, formData = {}) {
     return extractedField;
   });
 
+  // Populate formData with fields that have default values
+  populateFormData(extractedFields);
+
   // Extract top-level nestedFieldDescriptions if present in jsonFile
   const topLevelNestedFields = jsonFile.nestedFieldDescriptions
     ? extractNestedFields(
@@ -77,6 +106,9 @@ export function extractFieldData(jsonFile, formData = {}) {
         formData
       )
     : [];
+
+  // Populate formData with top-level nested fields that have default values
+  populateFormData(topLevelNestedFields);
 
   return {
     name,
