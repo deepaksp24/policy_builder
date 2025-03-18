@@ -1,3 +1,6 @@
+// Global formData variable
+let formData = {};
+
 function getType(fieldName, allFields, isEnum) {
   const field = allFields.find((f) => f.name === fieldName);
   if (!field) return "TYPE_UNKNOWN";
@@ -20,23 +23,31 @@ function getLabel(fieldName, allFields) {
   return field.label;
 }
 
-function checkFieldDependencies(field, formData) {
+function checkFieldDependencies(field) {
   // If no dependencies, field is always active
-  if (!field.fieldDependencies || field.fieldDependencies.length === 0) {
+  if (
+    !field.fieldDependencies ||
+    field.fieldDependencies.length === 0 ||
+    field.fieldDependencies.length === 2
+  ) {
     return true;
   }
 
-  console.log("field", field, "formdata", formData);
+  console.log("field", field);
+  console.log("formdata", formData);
+  console.log("-->", formData.updateDisabled);
 
+  console.log("---");
   // Check if any dependency condition is met
   return field.fieldDependencies.some((dependency) => {
     const sourceValue = formData[dependency.sourceField];
-    console.log(sourceValue, dependency.sourceFieldValue);
-    return sourceValue === dependency.sourceFieldValue;
+    console.log("------++", sourceValue, dependency.sourceFieldValue);
+    console.log(String(sourceValue) === String(dependency.sourceFieldValue));
+    return String(sourceValue) === String(dependency.sourceFieldValue);
   });
 }
 
-export function extractFieldData(jsonFile, formData = {}) {
+export function extractFieldData(jsonFile) {
   if (!jsonFile || !jsonFile.fieldDescriptions) return [];
 
   const policyDescription =
@@ -68,6 +79,12 @@ export function extractFieldData(jsonFile, formData = {}) {
     });
   };
 
+  // First, populate the global formData with default values
+  populateFormData(jsonFile.fieldDescriptions);
+
+  // Log the formData after population
+  console.log("Global formData after population:", formData);
+
   // Extract main fieldDescriptions
   const extractedFields = jsonFile.fieldDescriptions.map((fieldDescription) => {
     const isEnum = !!fieldDescription.knownValueDescriptions;
@@ -84,37 +101,25 @@ export function extractFieldData(jsonFile, formData = {}) {
       nestedFields: extractNestedFields(
         fieldDescription.nestedFieldDescriptions,
         allFields,
-        fieldDescription.field,
-        formData
+        fieldDescription.field
       ),
       fieldDependencies: fieldDescription.fieldDependencies || [],
     };
     // Check if the field should be active based on dependencies
-    extractedField.isActive = checkFieldDependencies(extractedField, formData);
+    extractedField.isActive = checkFieldDependencies(extractedField);
+    console.log("<><><>", extractedField.isActive);
     return extractedField;
   });
 
-  // Populate formData with fields that have default values
-  populateFormData(extractedFields);
-
   // Extract top-level nestedFieldDescriptions if present in jsonFile
   const topLevelNestedFields = jsonFile.nestedFieldDescriptions
-    ? extractNestedFields(
-        jsonFile.nestedFieldDescriptions,
-        allFields,
-        "",
-        formData
-      )
+    ? extractNestedFields(jsonFile.nestedFieldDescriptions, allFields, "")
     : [];
-
-  // Populate formData with top-level nested fields that have default values
-  populateFormData(topLevelNestedFields);
 
   return {
     name,
     policyDescription,
     fieldDescriptions: extractedFields,
-    // Include the extracted top-level nested fields
     nestedFieldDescriptions: topLevelNestedFields,
   };
 }
@@ -122,8 +127,7 @@ export function extractFieldData(jsonFile, formData = {}) {
 function extractNestedFields(
   nestedFieldDescriptions,
   allFields,
-  parentFieldName = "",
-  formData = {}
+  parentFieldName = ""
 ) {
   if (!nestedFieldDescriptions) return [];
   return nestedFieldDescriptions.map((nestedField) => {
@@ -142,15 +146,12 @@ function extractNestedFields(
       nestedFields: extractNestedFields(
         nestedField.nestedFieldDescriptions,
         allFields,
-        fullFieldName,
-        formData
+        fullFieldName
       ),
     };
     // Check if the nested field should be active based on dependencies
-    extractedNestedField.isActive = checkFieldDependencies(
-      extractedNestedField,
-      formData
-    );
+    extractedNestedField.isActive =
+      checkFieldDependencies(extractedNestedField);
     return extractedNestedField;
   });
 }
