@@ -33,12 +33,12 @@ const PolicyForm = ({ storedData, onSave, onCancel }) => {
     setFieldValues(initialValues);
   }, [storedData]);
 
-  const handleFieldChange = useCallback((fieldName, value) => {
-    setFieldValues((prevValues) => ({
-      ...prevValues,
-      [fieldName]: value,
+  const handleFieldChange = useCallback((fieldLabel, value) => {
+    setFieldValues((prev) => ({
+      ...prev,
+      [fieldLabel]: value,
     }));
-  }, []);
+  }, []); // Empty dependency array if setFieldValues is stable
 
   const evaluateDependencies = useCallback(
     (fieldDependencies, currentFieldValues) => {
@@ -426,7 +426,6 @@ const PolicyForm = ({ storedData, onSave, onCancel }) => {
               }}
             />
           );
-
         case "TYPE_MESSAGE":
           if (!nestedFields || nestedFields.length === 0) {
             return (
