@@ -20,7 +20,7 @@ export function policyBodyBuilder(storedData, savedValues) {
         policyfieldDescription = policy.fieldDescriptions;
         // console.log(policyDescriptionName);
         const single = createPolicyBody(policyValue, policyfieldDescription);
-        console.log(single);
+        // console.log(single);
       }
       break;
     }
