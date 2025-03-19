@@ -33,16 +33,16 @@ function checkFieldDependencies(field) {
     return true;
   }
 
-  console.log("field", field);
-  console.log("formdata", formData);
-  console.log("-->", formData.updateDisabled);
+  // console.log("field", field);
+  // console.log("formdata", formData);
+  // console.log("-->", formData.updateDisabled);
 
-  console.log("---");
+  // console.log("---");
   // Check if any dependency condition is met
   return field.fieldDependencies.some((dependency) => {
     const sourceValue = formData[dependency.sourceField];
-    console.log("------++", sourceValue, dependency.sourceFieldValue);
-    console.log(String(sourceValue) === String(dependency.sourceFieldValue));
+    // console.log("------++", sourceValue, dependency.sourceFieldValue);
+    // console.log(String(sourceValue) === String(dependency.sourceFieldValue));
     return String(sourceValue) === String(dependency.sourceFieldValue);
   });
 }
@@ -83,7 +83,7 @@ export function extractFieldData(jsonFile) {
   populateFormData(jsonFile.fieldDescriptions);
 
   // Log the formData after population
-  console.log("Global formData after population:", formData);
+  // console.log("Global formData after population:", formData);
 
   // Extract main fieldDescriptions
   const extractedFields = jsonFile.fieldDescriptions.map((fieldDescription) => {
@@ -107,7 +107,7 @@ export function extractFieldData(jsonFile) {
     };
     // Check if the field should be active based on dependencies
     extractedField.isActive = checkFieldDependencies(extractedField);
-    console.log("<><><>", extractedField.isActive);
+    // console.log("<><><>", extractedField.isActive);
     return extractedField;
   });
 
